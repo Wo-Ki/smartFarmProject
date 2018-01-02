@@ -7,7 +7,7 @@
 import socket
 import time, json
 from multiprocessing import Process, Manager
-from updateCtrl import UpdateCtrl
+from MysqlUpdateCtrl import UpdateCtrl
 from datetime import datetime
 import re
 import cPickle as pickle

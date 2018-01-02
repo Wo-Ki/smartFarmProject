@@ -8,99 +8,101 @@ import socket
 import time
 import json
 import threading
-from updateCtrl import UpdateCtrl
+from MysqlUpdateCtrl import MysqlUpdateCtrl
 from datetime import datetime
 from threading import Lock
-
+from JsonDataManger import JsonDataManager
 
 class HandleClient(threading.Thread):
-    def __init__(self, client_socket, client_address):
+    """处理客户端"""
+    def __init__(self, clientSocket, clientAddress):
         super(HandleClient, self).__init__()
-        self.client_socket = client_socket
-        self.client_address = client_address
+        self.clientSocket = clientSocket
+        self.clientAddress = clientAddress
 
     def run(self):
         """处理客户端请求数据"""
-        self.client_socket.settimeout(10)
+        global deviceSockets
+        self.clientSocket.settimeout(10)
         while True:
             try:
-                request_data = self.client_socket.recv(1024)
-                if request_data:
-                    print "request data:", request_data
-                    # 对设备发来的数据进行解析
-                    try:
-                        json_data = json.loads(request_data)
-                        # print type(json_data)
-                        print "device_sockets_1:", device_sockets
-                        sql = "insert into DHT11Data (device_id, hum_value, tem_value, create_time) values (%s,%s,%s,%s)"
-                        sqlCtrl.cud(sql, (json_data["ID"], json_data["Hum"], json_data["Tem"], datetime.now()))
-                        client_socket.send(bytes("OK\r\n"))
-                        if lock.acquire():
-                            if device_sockets.get(str(json_data["ID"])) is None:
-                                device_sockets[str(json_data["ID"])] = client_socket
-                                print "device_sockets[str(json_data[ID])]:", device_sockets[str(json_data["ID"])]
-                            lock.release()
-                    except:
-                        print "json load error!!!"
-                        # local_school.device_1001 = client_socket
-
-                    # 对flask发来的数据进行解析
-                    try:
-                        request_lines = request_data.splitlines()
-                        post_json_data_source = request_lines[-1]
-                        # post_json_data_source = re.match(r"\w+ +(/[^ ]*)", str(request_last_line)).group(1)
-                        # print "post_json_data_source:", post_json_data_source
-                        url_data_list = post_json_data_source.split("&")
-                        post_json_data = {}
-                        for data in url_data_list:
-                            sub_data = data.split('=')
-                            post_json_data[sub_data[0]] = sub_data[1]
-                        print "post_json_data:", post_json_data
-                        if device_sockets.get(post_json_data["device_id"]):
-                            device_sockets.get(post_json_data["device_id"]).send(bytes(post_json_data["ctrl"]))
-                            print "send already!!!"
-                    except:
-                        print "web data analysis error!!!"
+                requestData = self.clientSocket.recv(1024)
+                if requestData:
+                    print "request data:", requestData
+                    if requestData[0] == "{":
+                        # 对设备发来的数据进行解析
+                        try:
+                            jsonData = json.loads(requestData)
+                            # print type(jsonData)
+                            print "deviceSockets_1:", deviceSockets
+                            JsonDataManager.devicesJsonData(jsonData, clientSocket)
+                            # sql = "insert into DHT11Data (device_id, hum_value, tem_value, create_time) values (%s,%s,%s,%s)"
+                            # sqlCtrl.cud(sql, (jsonData["ID"], jsonData["Hum"], jsonData["Tem"], datetime.now()))
+                            # clientSocket.send(bytes("OK\r\n"))
+                            if lock.acquire():
+                                if deviceSockets.get(str(["ID"])) is None:
+                                    deviceSockets[str(jsonData["ID"])] = clientSocket
+                                    print "deviceSockets[str(jsonData[ID])]:", deviceSockets[str(jsonData["ID"])]
+                                lock.release()
+                        except:
+                            print "json load error!!!"
+                    else:
+                        # 对flask发来的数据进行解析
+                        try:
+                            requestLines = requestData.splitlines()
+                            postJsonDataSource = requestLines[-1]
+                            url_data_list = postJsonDataSource.split("&")
+                            postJsonData = {}
+                            for data in url_data_list:
+                                sub_data = data.split('=')
+                                postJsonData[sub_data[0]] = sub_data[1]
+                            print "postJsonData:", postJsonData
+                            if deviceSockets.get(postJsonData["deviceID"]):
+                                deviceSockets.get(postJsonData["deviceID"]).send(bytes(postJsonData["ctrl"]))
+                                print "send already!!!"
+                        except:
+                            print "web data analysis error!!!"
 
             except Exception, e:
                 print e
-                print "[%s, %s] : disconnect" % client_address
-                client_socket.close()
-
-                if client_socket in device_sockets.values():
+                print "[%s, %s] : disconnect" % clientAddress
+                clientSocket.close()
+                clientSocketID = list(deviceSockets.keys())[list(deviceSockets.values()).index(clientSocket)]
+                sql = "update devicesTable set status=0 where deviceID = %s"
+                sqlCtrl.cud(sql, (clientSocketID,))
+                if clientSocket in deviceSockets.values():
                     if lock.acquire():
-                        device_sockets.pop(str(json_data["ID"]))
+                        deviceSockets.pop(clientSocketID)
                         lock.release()
-                print "device_sockets_2:", device_sockets
+                print "deviceSockets_2:", deviceSockets
 
                 print "#" * 30
                 return
 
 
 if __name__ == "__main__":
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    server_socket.bind(("192.168.100.3", 8989))
-    server_socket.listen(5)
+    serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    serverSocket.bind(("192.168.100.3", 8989))
+    serverSocket.listen(5)
 
-    sqlCtrl = UpdateCtrl("192.168.100.3", "smartFarmTest", "root", "123456")
-    # local_school = threading.local()
+    sqlCtrl = MysqlUpdateCtrl("192.168.100.3", "smartFarmTest", "root", "123456")
     # 全局变量，储存当前连接的设备socket
-    device_sockets = {}
+    deviceSockets = {}
     lock = Lock()
     print "******Smart Farm Server Online*****"
 
     try:
         while True:
-            client_socket, client_address = server_socket.accept()
+            clientSocket, clientAddress = serverSocket.accept()
             print "*" * 30
-            # print "device_sockets:", device_sockets
-            print "[%s, %s] : connected" % client_address
-            handle_client_process = HandleClient(client_socket, client_address)
-            handle_client_process.start()
-            # client_socket.close()
+            # print "deviceSockets:", deviceSockets
+            print "[%s, %s] : connected" % clientAddress
+            handleClientProcess = HandleClient(clientSocket, clientAddress)
+            handleClientProcess.start()
+            # clientSocket.close()
 
     except KeyboardInterrupt:
         print "******Smart Farm Server Offline*****"
-        server_socket.close()
+        serverSocket.close()
         sqlCtrl.close()

@@ -6,7 +6,7 @@
 
 import select
 import socket
-from updateCtrl import UpdateCtrl
+from MysqlUpdateCtrl import UpdateCtrl
 
 if __name__ == "__main__":
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

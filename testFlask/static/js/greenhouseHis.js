@@ -96,7 +96,7 @@ $('#container_hum_his').highcharts({
         enabled: false
     },
     series: [{
-        name: '随机数据',
+        name: '湿度数据',
         data: (function () {
             // generate an array of random data
             var data = [],
@@ -221,7 +221,7 @@ $('#container_tem_his').highcharts({
         enabled: false
     },
     series: [{
-        name: '随机数据',
+        name: '温度数据',
         data: (function () {
             // generate an array of random data
             var data = [],

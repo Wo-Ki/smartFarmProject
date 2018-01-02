@@ -7,7 +7,7 @@
 from MySQLdb import *
 
 
-class UpdateCtrl:
+class MysqlUpdateCtrl(object):
     def __init__(self, host, db, user, passwd, port=3306, charset="utf8"):
         self.host = host
         self.port = port
@@ -30,7 +30,7 @@ class UpdateCtrl:
             self.open()
             self.cursor.execute(sql, params)
             self.conn.commit()
-            print "OK"
+            # print "OK"
             self.close()
         except Exception, e:
             print e.message

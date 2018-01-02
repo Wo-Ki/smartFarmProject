@@ -1,5 +1,5 @@
 #include <ESP8266WiFi.h>
-#include<dht11.h>
+#include <SimpleDHT.h>
 
 #define relay1 2
 const char *ssid     = "360WiFi-48681F";//这里是我的wifi，你使用时修改为你要连接的wifi ssid
@@ -10,8 +10,8 @@ const int tcpPort = 8989;//修改为你建立的Server服务端的端口号
 
 #define ID 1001
 
-#define DHTPIN 2
-dht11 DHT11;
+#define pinDHT22 2
+SimpleDHT22 dht22;
 float dhtHum = 0.0; //温度
 float dhtTem = 0.0;//湿度
 
@@ -80,33 +80,43 @@ unsigned long lastSend = 0;
 void dht11Func() {
   if (lastSend == 0 || millis() - lastSend >= 3000) {
     lastSend = millis();
-    int chk = DHT11.read(DHTPIN);
-    Serial.print("Read sensor: ");
-    switch (chk)
-    {
-      case DHTLIB_OK:
-        Serial.println("OK");
-        break;
-      case DHTLIB_ERROR_CHECKSUM:
-        Serial.println("Checksum error");
-        break;
-      case DHTLIB_ERROR_TIMEOUT:
-        Serial.println("Time out error");
-        break;
-      default:
-        Serial.println("Unknown error");
-        break;
+    //    int chk = DHT11.read(DHTPIN);
+    //    Serial.print("Read sensor: ");
+    //    switch (chk)
+    //    {
+    //      case DHTLIB_OK:
+    //        Serial.println("OK");
+    //        break;
+    //      case DHTLIB_ERROR_CHECKSUM:
+    //        Serial.println("Checksum error");
+    //        break;
+    //      case DHTLIB_ERROR_TIMEOUT:
+    //        Serial.println("Time out error");
+    //        break;
+    //      default:
+    //        Serial.println("Unknown error");
+    //        break;
+    //    }
+    //    dhtHum = (float)DHT11.humidity;
+    //    Serial.print("Humidity(%):");
+    //    Serial.println(dhtHum);
+    //
+    //    dhtTem = (float)DHT11.temperature;
+    //    Serial.print("Temperature(℃):");
+    //    Serial.println(dhtTem);
+
+    int err = SimpleDHTErrSuccess;
+    if ((err = dht22.read2(pinDHT22, &dhtTem, &dhtHum, NULL)) != SimpleDHTErrSuccess) {
+      Serial.print("Read DHT22 failed, err=");
+      Serial.println(err); delay(2000);
+      return;
     }
-    dhtHum = (float)DHT11.humidity;
     Serial.print("Humidity(%):");
     Serial.println(dhtHum);
-
-    dhtTem = (float)DHT11.temperature;
     Serial.print("Temperature(℃):");
     Serial.println(dhtTem);
-
     Serial.println("Sending current DHT11 status ...");
-    String sendData = "{\"ID\":"+String(ID)+",\"Hum\":"+String(dhtHum)+",\"Tem\":"+String(dhtTem)+"}\r\n";
+    String sendData = "{\"ID\":" + String(ID) + ",\"Hum\":" + String(dhtHum) + ",\"Tem\":" + String(dhtTem) + "}\r\n";
     client.print(sendData);
 
   }

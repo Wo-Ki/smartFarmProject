@@ -7,7 +7,7 @@
 
 from flask import Flask, render_template
 import config
-from models import DHT11Data
+from models import DevicesTable, DataChenTable, NotificationTable, AlertTable, LogTable
 from exts import db
 from sqlalchemy import or_
 import json
@@ -24,7 +24,7 @@ def index():
 
 @app.route("/greenhouse/")
 def greenhouse():
-        return render_template("greenhouse.html")
+    return render_template("greenhouse.html")
 
 
 @app.route("/data/<device_id>/")
@@ -37,9 +37,11 @@ def data(device_id):
     print json_data
     return json_data
 
+
 @app.route("/data/greenhouse_his")
 def greenhouse_his():
     pass
+
 
 if __name__ == '__main__':
     app.run(host="192.168.100.3", port=5001, debug=True)
