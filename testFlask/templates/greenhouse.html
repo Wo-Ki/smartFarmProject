@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block title %}
+    大棚系统
+{% endblock %}
+{% block head %}
+
+
+
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/greenhouse.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/extends/normalize.css") }}">
+
+
+
+
+{% endblock %}
+
+{% block main %}
+    <br>
+    <br>
+    <div class="container">
+        <div class="page-header">
+            <h1>大棚系统
+                <small>flying</small>
+            </h1>
+        </div>
+    </div>
+
+
+    {#    <div class="container">#}
+    {##}
+    {#        <div class="row">#}
+    {#            <div class="col-sm-6 col-lg-6">#}
+    {#                <div id="container-hum" style="width: 300px; height: 200px; float: left"></div>#}
+    {#            </div>#}
+    {#            <div class="col-sm-6 col-lg-6">#}
+    {#                <div id="container-tem" style="width: 300px; height: 200px; float: left"></div>#}
+    {#            </div>#}
+    {##}
+    {#            <div class="col_sm_3 col-lg-3">#}
+    {#                <p>通风</p>#}
+    {#                <div class="btn-group" role="group" aria-label="通风">#}
+    {#                    <button type="button" class="btn btn-default" id="wind_on">开</button>#}
+    {#                    <button type="button" class="btn btn-default" id="wind_off">关</button>#}
+    {#                </div>#}
+    {#            </div>#}
+    {##}
+    {#            <div class="col_sm_3 col-lg-6">#}
+    {#                <p>温控</p>#}
+    {#                <div class="con_tem">#}
+    {#                    <div class="box_tem"></div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h4>仪表盘</h4></div>
+        <div class="panel-body">
+            <div id="container-hum" style="width: 300px; height: 200px; float: left"></div>
+            <div id="container-tem" style="width: 300px; height: 200px; float: left"></div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h4>历史</h4></div>
+        <div class="panel-body">
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h4>湿度</h4></div>
+                    <div class="panel-body">
+                        <div id="container_hum_his" style="min-width:400px;height:400px"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h4>温度</h4></div>
+                    <div class="panel-body">
+                        <div id="container_tem_his" style="min-width:400px;height:400px"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><h4>控制台</h4></h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-lg-4 col-md-4 col-sm-4 .col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span>通风</span></h3>
+                    </div>
+                    <div class="panel-body">
+                        {#                        <div class="btn-group" role="group" aria-label="通风">#}
+                        {#                            <button type="button" class="btn btn-default" id="wind_on">开</button>#}
+                        {#                            <button type="button" class="btn btn-default" id="wind_off">关</button>#}
+                        {#                        </div>#}
+                        <div class="pull-left">
+                            <input class='tgl tgl-ios' id='cb2' type='checkbox'>
+                            <label class='tgl-btn' for='cb2'></label>
+                        </div>
+                        <div class="pull-right" id="wind_msg" style="height: 33px;line-height: 33px">已关闭通风</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 .col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span>温控</span></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="" style="float: left;height: 30px;line-height: 30px;">0&nbsp;</div>
+                        <div class="con_tem">
+                            <div class="box_tem"></div>
+                        </div>
+                        <div class="" style="float: left;height: 30px;line-height: 30px;">&nbsp;40</div>
+                        <div style="float: right;height: 30px;line-height: 30px;">&nbsp;℃</div>
+                        <div id="tem_set_value" style="float: right;height: 30px;line-height: 30px;">25</div>
+                        <div class="" style="float: right;height: 30px;line-height: 30px;">&nbsp;&nbsp;预设值：</div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/exporting.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts-zh_CN.js") }}"></script>
+
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts-more.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/solid-gauge.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="js/greenhouse.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="js/greenhouseHis.js") }}"></script>
+
+    <script>
+
+    </script>
+{% endblock %}
