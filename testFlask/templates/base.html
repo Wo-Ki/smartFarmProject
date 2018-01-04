@@ -13,10 +13,17 @@
     <script type="text/javascript" src="{{ url_for("static", filename="js/extends/bootstrap.min.js") }}"></script>
 
     <script type="text/javascript" src="{{ url_for("static", filename="js/extends/jquery-ui.min.js") }}"></script>
-    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/jquery.ui.touch-punch.min.js") }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for("static", filename="js/extends/jquery.ui.touch-punch.min.js") }}"></script>
 
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/exporting.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts-zh_CN.js") }}"></script>
 
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts-more.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/solid-gauge.js") }}"></script>
 
+    <script type="text/javascript" src="{{ url_for("static", filename="js/base.js") }}"></script>
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -38,7 +45,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ url_for("index") }}">首页 <span class="sr-only">(current)</span></a></li>
+                <li class=""><a href="{{ url_for("index") }}">首页 <span class="sr-only">(current)</span></a></li>
                 {#                <li><a href="#">子系统</a></li>#}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -86,7 +93,9 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="main">
+
     {% block main %}{% endblock %}
+    <div class="toTop"><span class="label label-default"><span class="glyphicon glyphicon-menu-up"></span></span></div>
 </div>
 
 </body>

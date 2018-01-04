@@ -1,9 +1,13 @@
 /**
  * Created by wangkai on 2018/1/2.
  */
+// alert(String(window.location.pathname).split("/")[3]);
 Highcharts.setOptions({
     global: {
         useUTC: false
+    },
+    credits: {
+        enabled: false
     }
 });
 function activeLastPointToolip(chart) {
@@ -23,43 +27,29 @@ $('#container_hum_his').highcharts({
                 var series = this.series[0],
                     chart = this;
                 setInterval(function () {
-
-                    // var jsonData = managerData();
-                    // console.log("jsonData:", jsonData);
-                    // var x = (new Date()).getTime(), // current time
-                    //     y = Math.random();
                     // ***
                     $.ajax({
                         type: 'GET',
-                        url: '/data/1001/',
+                        url: '/data/greenhouse/',
                         dataType: 'json',
                         timeout: 300,
                         // context: $('body'),
                         success: function (data) {
-                            // Supposing this JSON payload was received:
-                            //   {"project": {"id": 42, "html": "<div>..." }}
-                            // append the HTML to context object.
-                            // this.append(data.project.html)
-
-                            console.log("data:", data);
+                            var urlNow = String(window.location.pathname).split("/")[3];
                             var x = (new Date(data["create_time"])).getTime(),
-                                y = data["Hum"];
+                                y = parseFloat(data["hum" + urlNow]);
                             console.log("x:", x, ";y:", y);
 
                             series.addPoint([x, y], true, true);
                             activeLastPointToolip(chart)
                         },
                         error: function (xhr, type) {
-                            // alert('Ajax error!')
                             console.log('Ajax error!')
                         }
 
                     });
                     // ***
-                    // var x = jsonData["create_time"],
-                    //     y = jsonData["Tem"];
-                    // series.addPoint([x, y], true, true);
-                    // activeLastPointToolip(chart)
+
                 }, 2000);
             }
         }
@@ -114,35 +104,35 @@ $('#container_hum_his').highcharts({
 }, function (c) {
     activeLastPointToolip(c);
 });
-
-function managerData() {
-
-    var renturnData = {};
-    // ***
-    $.ajax({
-        type: 'GET',
-        url: '/data/1001/',
-        dataType: 'json',
-        timeout: 300,
-        // context: $('body'),
-        success: function (data) {
-            // Supposing this JSON payload was received:
-            //   {"project": {"id": 42, "html": "<div>..." }}
-            // append the HTML to context object.
-            // this.append(data.project.html)
-
-            console.log("data:", data);
-            renturnData = data;
-        },
-        error: function (xhr, type) {
-            // alert('Ajax error!')
-            console.log('Ajax error!')
-        }
-
-    });
-    // ***
-    return renturnData;
-}
+//
+// function managerData() {
+//
+//     var renturnData = {};
+//     // ***
+//     $.ajax({
+//         type: 'GET',
+//         url: '/data/greenhouse/',
+//         dataType: 'json',
+//         timeout: 300,
+//         // context: $('body'),
+//         success: function (data) {
+//             // Supposing this JSON payload was received:
+//             //   {"project": {"id": 42, "html": "<div>..." }}
+//             // append the HTML to context object.
+//             // this.append(data.project.html)
+//
+//             console.log("data:", data);
+//             renturnData = data;
+//         },
+//         error: function (xhr, type) {
+//             // alert('Ajax error!')
+//             console.log('Ajax error!')
+//         }
+//
+//     });
+//     // ***
+//     return renturnData;
+// }
 
 // 温度历史记录
 $('#container_tem_his').highcharts({
@@ -159,7 +149,7 @@ $('#container_tem_his').highcharts({
                     // ***
                     $.ajax({
                         type: 'GET',
-                        url: '/data/1001/',
+                        url: '/data/greenhouse/',
                         dataType: 'json',
                         timeout: 300,
                         // context: $('body'),
@@ -167,24 +157,21 @@ $('#container_tem_his').highcharts({
                             // Supposing this JSON payload was received:
 
                             // console.log("data:", data);
+                            var urlNow = String(window.location.pathname).split("/")[3];
+
                             var x = (new Date(data["create_time"])).getTime(),
-                                y = data["Tem"];
+                                y = parseFloat(data["hum"+urlNow]);
                             // console.log("x:",x,";y:",y);
 
                             series.addPoint([x, y], true, true);
                             activeLastPointToolip(chart)
                         },
                         error: function (xhr, type) {
-                            // alert('Ajax error!')
                             console.log('Ajax error!')
                         }
 
                     });
                     // ***
-                    // var x = (new Date()).getTime(), // current time
-                    //     y = Math.random();
-                    // series.addPoint([x, y], true, true);
-                    // activeLastPointToolip(chart)
                 }, 2000);
             }
         }
@@ -238,4 +225,5 @@ $('#container_tem_his').highcharts({
     }]
 }, function (c) {
     activeLastPointToolip(c);
+
 });

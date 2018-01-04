@@ -34,14 +34,26 @@ def data():
     #              "create_time": str(newData.create_time)}
     # json_data = json.dumps(newData)
     # json_data = json.loads(json_data)
-    jsonData = {}
-    print "/data/greenhouse/ newData:", newData
-    return newData
+    jsonData = {"ID": newData.ID, "temIn": newData.temIn, "humIn": newData.humIn, "temOut": newData.temOut,
+                "humOut": newData.humOut, "temSoil1": newData.temSoil1, "humSoil1": newData.humSoil1,
+                "temSoil2": newData.temSoil2, "humSoil2": newData.humSoil2, "create_time": str(newData.create_time)}
+    json_data = json.dumps(jsonData)
+    print "/data/greenhouse/ json_data:", json_data
+    return json_data
 
 
-@app.route("/data/greenhouse_his")
-def greenhouse_his():
-    pass
+@app.route("/data/greenhouse/<page>")
+def greenhouse_his(page):
+    if page == "In":
+        return render_template("greenhouseHis/greenhouseIn.html")
+    elif page == "Out":
+        return render_template("greenhouseHis/greenhouseOut.html")
+    elif page == "Soil1":
+        return render_template("greenhouseHis/greenhouseSoil1.html")
+    elif page == "Soil2":
+        return render_template("greenhouseHis/greenhouseSoil2.html")
+    else:
+        return "Not Found"
 
 
 if __name__ == '__main__':

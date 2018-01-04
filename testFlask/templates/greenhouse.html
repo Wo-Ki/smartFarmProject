@@ -56,96 +56,189 @@
     <div class="panel panel-primary">
         <div class="panel-heading"><h4>仪表盘</h4></div>
         <div class="panel-body">
-            <div id="container-humIn" style="width: 300px; height: 200px; float: left"></div>
-            <div id="container-temIn" style="width: 300px; height: 200px; float: left"></div>
-            <div id="container-humOut" style="width: 300px; height: 200px; float: left"></div>
-            <div id="container-temOut" style="width: 300px; height: 200px; float: left"></div>
-            <div id="container-humSoil1" style="width: 300px; height: 200px; float: left"></div>
-            <div id="container-temSoil1" style="width: 300px; height: 200px; float: left"></div>
-            <div id="container-humSoil2" style="width: 300px; height: 200px; float: left"></div>
-            <div id="container-temSoil2" style="width: 300px; height: 200px; float: left"></div>
-        </div>
-    </div>
-    <div class="panel panel-primary">
-        <div class="panel-heading"><h4>历史</h4></div>
-        <div class="panel-body">
 
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="greenhouseIn">
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><h4>湿度</h4></div>
-                    <div class="panel-body">
-                        <div id="container_hum_his" style="min-width:400px;height:400px"></div>
-
+                    <div class="panel-heading"><span>大棚内</span><a href="{{ url_for("greenhouse_his",page="In") }}"
+                                                                  style="float: right;color: white">历史</a></div>
+                    <div class="panel-body" style="padding: 0 0;">
+                        <div id="container-humIn" style="width: 280px; height: 200px; float: left"></div>
+                        <div id="container-temIn" style="width: 280px; height: 200px; float: left"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="greenhouseOut">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><span>大棚外</span><a href="{{ url_for("greenhouse_his",page="Out") }}"
+                                                                  style="float: right;color: white">历史</a></div>
+                    <div class="panel-body" style="padding: 0 0;">
+                        <div id="container-humOut" style="width: 280px; height: 200px; float: left"></div>
+                        <div id="container-temOut" style="width: 280px; height: 200px; float: left"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="greenhouseSoil">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><span>土壤1</span><a href="{{ url_for("greenhouse_his",page="Soil1") }}"
+                                                                  style="float: right;color: white">历史</a></div>
+                    <div class="panel-body" style="padding: 0 0;">
+                        <div id="container-humSoil1" style="width: 280px; height: 200px; float: left"></div>
+                        <div id="container-temSoil1" style="width: 280px; height: 200px; float: left"></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><h4>温度</h4></div>
-                    <div class="panel-body">
-                        <div id="container_tem_his" style="min-width:400px;height:400px"></div>
-
+                    <div class="panel-heading"><span>土壤2</span><a href="{{ url_for("greenhouse_his",page="Soil2") }}"
+                                                                  style="float: right;color: white">历史</a></div>
+                    <div class="panel-body" style="padding: 0 0;">
+                        <div id="container-humSoil2" style="width: 280px; height: 200px; float: left"></div>
+                        <div id="container-temSoil2" style="width: 280px; height: 200px; float: left"></div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title"><h4>控制台</h4></h3>
-        </div>
-        <div class="panel-body">
-            <div class="col-lg-4 col-md-4 col-sm-4 .col-xs-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><span>通风</span></h3>
-                    </div>
-                    <div class="panel-body">
-                        {#                        <div class="btn-group" role="group" aria-label="通风">#}
-                        {#                            <button type="button" class="btn btn-default" id="wind_on">开</button>#}
-                        {#                            <button type="button" class="btn btn-default" id="wind_off">关</button>#}
-                        {#                        </div>#}
-                        <div class="pull-left">
-                            <input class='tgl tgl-ios' id='cb2' type='checkbox'>
-                            <label class='tgl-btn' for='cb2'></label>
-                        </div>
-                        <div class="pull-right" id="wind_msg" style="height: 33px;line-height: 33px">已关闭通风</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 .col-xs-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><span>温控</span></h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="" style="float: left;height: 30px;line-height: 30px;">0&nbsp;</div>
-                        <div class="con_tem">
-                            <div class="box_tem"></div>
-                        </div>
-                        <div class="" style="float: left;height: 30px;line-height: 30px;">&nbsp;40</div>
-                        <div style="float: right;height: 30px;line-height: 30px;">&nbsp;℃</div>
-                        <div id="tem_set_value" style="float: right;height: 30px;line-height: 30px;">25</div>
-                        <div class="" style="float: right;height: 30px;line-height: 30px;">&nbsp;&nbsp;预设值：</div>
-
-
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
+    {#    <div class="panel panel-primary">#}
+    {#        <div class="panel-heading"><h4>历史</h4></div>#}
+    {#        <div class="panel-body">#}
+    {##}
+    {#            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">#}
+    {#                <div class="panel panel-primary">#}
+    {#                    <div class="panel-heading"><h4>湿度</h4></div>#}
+    {#                    <div class="panel-body">#}
+    {#                        <div id="container_hum_his" style="min-width:400px;height:400px"></div>#}
+    {##}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">#}
+    {#                <div class="panel panel-primary">#}
+    {#                    <div class="panel-heading"><h4>温度</h4></div>#}
+    {#                    <div class="panel-body">#}
+    {#                        <div id="container_tem_his" style="min-width:400px;height:400px"></div>#}
+    {##}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+    <div class="col-lg-8 col-md-8 col-sm-8 .col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><h4>控制台</h4></h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><span>温控</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="" style="float: left;height: 30px;line-height: 30px;">0&nbsp;</div>
+                            <div class="con_tem">
+                                <div class="box_tem"></div>
+                            </div>
+                            <div class="" style="float: left;height: 30px;line-height: 30px;">&nbsp;40</div>
+                            <div style="float: right;height: 30px;line-height: 30px;">&nbsp;℃</div>
+                            <div id="tem_set_value" style="float: right;height: 30px;line-height: 30px;">25</div>
+                            <div class="" style="float: right;height: 30px;line-height: 30px;">&nbsp;&nbsp;预设值：</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><span>通风</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="pull-left">
+                                <input class='tgl tgl-ios' id='winCtrlBtn' type='checkbox'>
+                                <label class='tgl-btn' for='winCtrlBtn'></label>
+                            </div>
+                            <div class="pull-right" id="wind_msg" style="height: 33px;line-height: 33px">已关闭通风</div>
+                        </div>
+                    </div>
+                </div>
 
-    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts.js") }}"></script>
-    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/exporting.js") }}"></script>
-    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts-zh_CN.js") }}"></script>
-
-    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts-more.js") }}"></script>
-    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/solid-gauge.js") }}"></script>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><span>开门</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="pull-left">
+                                <input class='tgl tgl-ios' id='doorCtrlBtn' type='checkbox'>
+                                <label class='tgl-btn' for='doorCtrlBtn'></label>
+                            </div>
+                            <div class="pull-right" id="door_msg" style="height: 33px;line-height: 33px">已关门</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><span>开灯</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="pull-left">
+                                <input class='tgl tgl-ios' id='lightCtrlBtn' type='checkbox'>
+                                <label class='tgl-btn' for='lightCtrlBtn'></label>
+                            </div>
+                            <div class="pull-right" id="light_msg" style="height: 33px;line-height: 33px">已关门</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><span>喷灌1</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="pull-left">
+                                <input class='tgl tgl-ios' id='water1CtrlBtn' type='checkbox'>
+                                <label class='tgl-btn' for='water1CtrlBtn'></label>
+                            </div>
+                            <div class="pull-right" id="water1_msg" style="height: 33px;line-height: 33px">已停止喷灌</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><span>喷灌2</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="pull-left">
+                                <input class='tgl tgl-ios' id='water2CtrlBtn' type='checkbox'>
+                                <label class='tgl-btn' for='water2CtrlBtn'></label>
+                            </div>
+                            <div class="pull-right" id="water2_msg" style="height: 33px;line-height: 33px">已停止喷灌</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 .col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4>状态栏</h4></div>
+            <div class="panel-body" style="padding: 0 0;">
+                开灯
+            </div>
+        </div>
+    </div>
+    {#    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts.js") }}"></script>#}
+    {#    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/exporting.js") }}"></script>#}
+    {#    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts-zh_CN.js") }}"></script>#}
+    {##}
+    {#    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts-more.js") }}"></script>#}
+    {#    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/solid-gauge.js") }}"></script>#}
     <script type="text/javascript" src="{{ url_for("static", filename="js/greenhouse.js") }}"></script>
-    <script type="text/javascript" src="{{ url_for("static", filename="js/greenhouseHis.js") }}"></script>
+    {#    <script type="text/javascript" src="{{ url_for("static", filename="js/greenhouseHis.js") }}"></script>#}
 
     <script>
 

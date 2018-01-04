@@ -224,7 +224,7 @@ $(function () {
         }]
     });
 
-       // 土壤2湿度仪表
+    // 土壤2湿度仪表
     var chartTHumSoil2 = Highcharts.chart('container-humSoil2', {
         yAxis: {
             min: 0,
@@ -267,19 +267,23 @@ $(function () {
             }
         });
         function managerData(data) {
+            console.log("data:", data);
+            var dataJson = JSON.stringify(data);
+            sessionStorage.setItem("greenhouseTemHumData",dataJson);
             var point,
                 newVal,
                 inc;
-            if (chart1) {
-                point = chart1.series[0].points[0];
-                newVal = data["Hum"];
-                console.log("Hum newVal:" + String(newVal));
+            if (chartHumIn) {
+                point = chartHumIn.series[0].points[0];
+                newVal = parseFloat(data["humIn"]);
+                console.log("HumIn newVal:" + String(newVal));
                 point.update(newVal);
             }
-            if (chart2) {
-                point = chart2.series[0].points[0];
-                console.log("Tem newVal:" + String(newVal));
-                newVal = data["Tem"];
+            if (chartTemIn) {
+                point = chartTemIn.series[0].points[0];
+                newVal = parseFloat(data["temIn"]);
+                console.log("TemOut newVal:" + String(newVal));
+
                 point.update(newVal);
             }
         }
@@ -325,13 +329,54 @@ $(function () {
         }
     });
     // 通风按钮
-    $cb2 = $("#cb2");
-    $cb2.click(function () {
-        if ($cb2.is(':checked')) {
-            $("#wind_msg").html("已经开始通风");
+    $winCtrlBtn = $("#winCtrlBtn");
+    $winCtrlBtn.click(function () {
+        if ($winCtrlBtn.is(':checked')) {
+            $("#wind_msg").html("已开始通风");
         }
         else {
             $("#wind_msg").html("已关闭通风");
+        }
+    });
+    // 开门按钮
+    $doorCtrlBtn = $("#doorCtrlBtn");
+    $doorCtrlBtn.click(function () {
+        if ($doorCtrlBtn.is(':checked')) {
+            $("#door_msg").html("已经开门");
+        }
+        else {
+            $("#door_msg").html("已关门");
+        }
+    });
+    // 开门按钮
+    $lightCtrlBtn = $("#lightCtrlBtn");
+    $lightCtrlBtn.click(function () {
+        if ($lightCtrlBtn.is(':checked')) {
+            $("#light_msg").html("已经开灯");
+        }
+        else {
+            $("#light_msg").html("已关灯");
+        }
+    });
+
+    // 喷灌1
+    $water1CtrlBtn = $("#water1CtrlBtn");
+    $water1CtrlBtn.click(function () {
+        if ($water1CtrlBtn.is(':checked')) {
+            $("#water1_msg").html("已开始喷灌");
+        }
+        else {
+            $("#water1_msg").html("已关闭喷灌");
+        }
+    });
+    // 喷灌1
+    $water2CtrlBtn = $("#water2CtrlBtn");
+    $water2CtrlBtn.click(function () {
+        if ($water2CtrlBtn.is(':checked')) {
+            $("#water2_msg").html("已开始喷灌");
+        }
+        else {
+            $("#water2_msg").html("已关闭喷灌");
         }
     });
 
