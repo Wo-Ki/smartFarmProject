@@ -51,7 +51,7 @@ void loop()
       delay(500);
     } else {
       Serial.print("chickin");
-      //      client.print("{\"M\":\"checkin\",\"ID\":\"3114\",\"K\":\"1161b7956\"}\r\n");
+            client.print("{\"M\":\"checkin\",\"ID\":\""+String(ID)+"\"}\n");
       delay(500);
     }
 
@@ -116,7 +116,8 @@ void dht11Func() {
     Serial.print("Temperature(℃):");
     Serial.println(dhtTem);
     Serial.println("Sending current DHT11 status ...");
-    String sendData = "{\"ID\":" + String(ID) + ",\"Hum\":" + String(dhtHum) + ",\"Tem\":" + String(dhtTem) + "}\r\n";
+//    String sendData = "{\"ID\":" + String(ID) + ",\"Hum\":" + String(dhtHum) + ",\"Tem\":" + String(dhtTem) + "}\r\n";
+    String sendData = "{\"M\":\"update\",\"ID\":\""+String(ID)+"\",\"temIn\":"+ String(dhtTem)+",\"humIn\":"+String(dhtHum) +"}\n";
     client.print(sendData);
 
   }

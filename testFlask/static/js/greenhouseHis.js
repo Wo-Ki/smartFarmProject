@@ -44,7 +44,7 @@ $('#container_hum_his').highcharts({
                             console.log("data:", data);
                             var x = (new Date(data["create_time"])).getTime(),
                                 y = data["Hum"];
-                            console.log("x:",x,";y:",y);
+                            console.log("x:", x, ";y:", y);
 
                             series.addPoint([x, y], true, true);
                             activeLastPointToolip(chart)
@@ -156,7 +156,7 @@ $('#container_tem_his').highcharts({
                 var series = this.series[0],
                     chart = this;
                 setInterval(function () {
-                     // ***
+                    // ***
                     $.ajax({
                         type: 'GET',
                         url: '/data/1001/',

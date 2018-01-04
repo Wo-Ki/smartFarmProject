@@ -7,7 +7,7 @@
 
 from flask import Flask, render_template
 import config
-from models import DevicesTable, DataChenTable, NotificationTable, AlertTable, LogTable
+from models import DevicesTable, DataChenTable, NotificationTable, AlertTable, LogTable, StatusTable
 from exts import db
 from sqlalchemy import or_
 import json
@@ -27,15 +27,16 @@ def greenhouse():
     return render_template("greenhouse.html")
 
 
-@app.route("/data/<device_id>/")
-def data(device_id):
-    dht11_data = DHT11Data.query.filter(device_id == DHT11Data.device_id).order_by("-create_time").first()
-    json_data = {"id": dht11_data.id, "device_id": device_id, "Hum": dht11_data.hum_value, "Tem": dht11_data.tem_value,
-                 "create_time": str(dht11_data.create_time)}
-    json_data = json.dumps(json_data)
+@app.route("/data/greenhouse/")
+def data():
+    newData = DataChenTable.query.order_by("-create_time").first()
+    # json_data = {"id": newData.id, "device_id": device_id, "Hum": newData.hum_value, "Tem": newData.tem_value,
+    #              "create_time": str(newData.create_time)}
+    # json_data = json.dumps(newData)
     # json_data = json.loads(json_data)
-    print json_data
-    return json_data
+    jsonData = {}
+    print "/data/greenhouse/ newData:", newData
+    return newData
 
 
 @app.route("/data/greenhouse_his")

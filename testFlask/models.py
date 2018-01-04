@@ -20,27 +20,36 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class DevicesTable(db.Model):
     __tablename__ = "devicesTable"
-    deviceID = db.Column(db.String(10), nullable=False, primary_key=True)
-    status = db.Column(db.Integer, nullable=False, default=0)  # 0:下线，1：上线，2：警告
+    ID = db.Column(db.String(10), nullable=False, primary_key=True)
+    status = db.Column(db.String(10), nullable=False, default=0)  # 0:下线，1：上线，2：警告
     changeTime = db.Column(db.DateTime, default=datetime.now)
 
 
 class DataChenTable(db.Model):
     __tablename__ = "data1001Table"
     num = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    deviceID = db.Column(db.String(10), db.ForeignKey('devicesTable.deviceID'))
-    temValue = db.Column(db.Float)
-    humValue = db.Column(db.Float)
-    windCtrl = db.Column(db.Integer)
-    temCtrl = db.Column(db.Float)
+    ID = db.Column(db.String(10), db.ForeignKey('devicesTable.ID'))
+    temIn = db.Column(db.String(10))
+    humIn = db.Column(db.String(10))
+    temOut = db.Column(db.String(10))
+    humOut = db.Column(db.String(10))
+    temSoil1 = db.Column(db.String(10))
+    humSoil1 = db.Column(db.String(10))
+    temSoil2 = db.Column(db.String(10))
+    humSoil2 = db.Column(db.String(10))
+    # windCtrl = db.Column(db.String(10))
+    # temCtrl = db.Column(db.String(10))
+    # water1 = db.Column(db.String(10))  # 1:浇水， 0：不浇水
+    # water2 = db.Column(db.String(10))  # 1:浇水， 0：不浇水
+    # humanStatus = db.Column(db.String(10))  # 1:刷卡有人，2：异常有人，0：无人
     create_time = db.Column(db.DateTime, default=datetime.now)
 
 
 class NotificationTable(db.Model):
     __tablename__ = "notificationTable"
     num = db.Column(db.Integer, nullable=False, primary_key=True, autoincrement=True)
-    sourceID = db.Column(db.String(10), db.ForeignKey("devicesTable.deviceID"))
-    targetID = db.Column(db.Text)  # 目标设备ID，可能多个，以都好分隔
+    SID = db.Column(db.String(10), db.ForeignKey("devicesTable.ID"))
+    TID = db.Column(db.Text)  # 目标设备ID，可能多个，以都好分隔
     message = db.Column(db.Text)
     create_time = db.Column(db.DateTime, default=datetime.now)
 
@@ -48,7 +57,7 @@ class NotificationTable(db.Model):
 class AlertTable(db.Model):
     __tablename__ = "alertTable"
     num = db.Column(db.Integer, nullable=False, primary_key=True, autoincrement=True)
-    deviceID = db.Column(db.String(10), db.ForeignKey("devicesTable.deviceID"))
+    ID = db.Column(db.String(10), db.ForeignKey('devicesTable.ID'))
     # deviceID = db.Column(db.String(10), db.ForeignKey("devicesTable.deviceID"))
     # targetID = db.Column(db.Text)  # 目标设备ID，可能多个，以都好分隔
     message = db.Column(db.Text)
@@ -60,3 +69,17 @@ class LogTable(db.Model):
     num = db.Column(db.Integer, nullable=False, primary_key=True, autoincrement=True)
     create_time = db.Column(db.DateTime, default=datetime.now)
     log = db.Column(db.Text, nullable=False)
+
+
+class StatusTable(db.Model):
+    __tablename__ = "statusTable"
+    num = db.Column(db.Integer, nullable=False, primary_key=True, autoincrement=True)
+    ID = db.Column(db.String(10), db.ForeignKey("devicesTable.ID"))
+    changeTime = db.Column(db.DateTime, default=datetime.now)
+    col1 = db.Column(db.String(50))
+    col2 = db.Column(db.String(50))
+    col3 = db.Column(db.String(50))
+    col4 = db.Column(db.String(50))
+    col5 = db.Column(db.String(50))
+    col6 = db.Column(db.String(50))
+    col7 = db.Column(db.String(50))

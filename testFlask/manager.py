@@ -8,7 +8,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from testFlask import app
 from exts import db
-from models import DevicesTable, DataChenTable, NotificationTable, AlertTable, LogTable
+from models import DevicesTable, DataChenTable, NotificationTable, AlertTable, LogTable, StatusTable
 
 manager = Manager(app)
 
