@@ -4,7 +4,6 @@
 # creator = wangkai
 # creation time = 2017/12/25 08:10 
 
-
 from flask import Flask, render_template, Response
 import config
 from models import DevicesTable, DataChenTable, NotificationTable, AlertTable, LogTable, StatusTable

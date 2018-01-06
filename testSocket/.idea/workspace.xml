@@ -41,8 +41,8 @@
       <file leaf-file-name="testSocketThread.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testSocketThread.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1343">
-              <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
+            <state relative-caret-position="204">
+              <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
               <folding>
                 <element signature="e#90#103#0" expanded="true" />
                 <marker date="1515206117000" expanded="true" signature="3501:3547" ph="update devic... " />
@@ -130,8 +130,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="169" />
-    <option name="y" value="122" />
+    <option name="x" value="74" />
+    <option name="y" value="44" />
     <option name="width" value="1440" />
     <option name="height" value="827" />
   </component>
@@ -535,8 +535,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="169" y="122" width="1440" height="827" extended-state="0" />
-    <editor active="false" />
+    <frame x="74" y="44" width="1440" height="827" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20886981" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292517" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1037,8 +1037,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testSocketThread.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
+        <state relative-caret-position="204">
+          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
           <folding>
             <element signature="e#90#103#0" expanded="true" />
             <marker date="1515206117000" expanded="true" signature="3501:3547" ph="update devic... " />

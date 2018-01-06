@@ -22,10 +22,10 @@ def local_update():
 @task
 def remote_update():
     with cd("/home/pi/RaspbianPython/smartFarmProject"):
-        run("ls -l")
-        # run("git checkout -- *")
-        # run("git checkout master")
-        # run("git pull origin master")
+        # run("ls -l")
+        run("git checkout -- *")
+        run("git checkout master")
+        run("git pull origin master")
 
 
 @task
