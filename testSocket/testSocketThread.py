@@ -32,7 +32,7 @@ class HandleClient(threading.Thread):
             try:
                 requestData = self.clientSocket.recv(1024)
                 if requestData:
-                    print "request data:", requestData
+                    # print "request data:", requestData
                     if requestData[0] == "{":
                         # 对设备发来的数据进行解析
                         try:
@@ -44,7 +44,7 @@ class HandleClient(threading.Thread):
                                     deviceSockets[str(jsonData["ID"])] = self.clientSocket
                                     print "deviceSockets[str(jsonData[ID])]:", deviceSockets[str(jsonData["ID"])]
                                 lock.release()
-                            jsonDataManager.devicesJsonData(jsonData, self.clientSocket, self.sqlCtrl)
+                            JsonDataManager.devicesJsonData(jsonData, self.clientSocket, self.sqlCtrl, deviceSockets)
                             # sql = "insert into DHT11Data (device_id, hum_value, tem_value, create_time) values (%s,%s,%s,%s)"
                             # sqlCtrl.cud(sql, (jsonData["ID"], jsonData["Hum"], jsonData["Tem"], datetime.now()))
                             # clientSocket.send(bytes("OK\r\n"))
@@ -65,7 +65,7 @@ class HandleClient(threading.Thread):
                             # if deviceSockets.get(postJsonData["deviceID"]):
                             #     deviceSockets.get(postJsonData["deviceID"]).send(bytes(postJsonData["ctrl"]))
                             #     print "send already!!!"
-                            jsonDataManager.flaskJsonData(postJsonData, clientAddress, self.sqlCtrl)
+                            JsonDataManager.flaskJsonData(postJsonData, clientAddress, self.sqlCtrl, deviceSockets)
                         except:
                             print "web data analysis error!!!"
 
@@ -74,14 +74,17 @@ class HandleClient(threading.Thread):
                 print "[%s, %s] : disconnect" % clientAddress
 
                 self.clientSocket.close()
-                clientSocketID = list(deviceSockets.keys())[list(deviceSockets.values()).index(self.clientSocket)]
-                sql = "update devicesTable set status=0 where ID = %s"
-                self.sqlCtrl.cud(sql, (clientSocketID,))
-                if self.clientSocket in deviceSockets.values():
-                    if lock.acquire():
-                        deviceSockets.pop(clientSocketID)
-                        lock.release()
-                self.sqlCtrl.close()
+                try:
+                    clientSocketID = list(deviceSockets.keys())[list(deviceSockets.values()).index(self.clientSocket)]
+                    sql = "update devicesTable set status=0 where ID = %s"
+                    self.sqlCtrl.cud(sql, (clientSocketID,))
+                    if self.clientSocket in deviceSockets.values():
+                        if lock.acquire():
+                            deviceSockets.pop(clientSocketID)
+                            lock.release()
+                    self.sqlCtrl.close()
+                except:
+                    pass
                 print "deviceSockets_2:", deviceSockets
 
                 print "#" * 30
@@ -94,7 +97,7 @@ if __name__ == "__main__":
     serverSocket.bind(("192.168.100.3", 8989))
     serverSocket.listen(5)
 
-    jsonDataManager = JsonDataManager()
+    # jsonDataManager = JsonDataManager()
     # 全局变量，储存当前连接的设备socket
     deviceSockets = {}
     lock = Lock()

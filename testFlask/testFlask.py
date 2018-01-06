@@ -5,11 +5,12 @@
 # creation time = 2017/12/25 08:10 
 
 
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 import config
 from models import DevicesTable, DataChenTable, NotificationTable, AlertTable, LogTable, StatusTable
 from exts import db
 from sqlalchemy import or_
+from camera_opencv import Camera
 import json
 
 app = Flask(__name__)
@@ -56,5 +57,28 @@ def greenhouse_his(page):
         return "Not Found"
 
 
+def gen(camera):
+    """Video streaming generator function."""
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+@app.route("/monitorDataGreenhouse/")
+def monitorDataGreenhouse():
+    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+@app.route("/monitor/")
+def monitor():
+    return render_template("monitor.html")
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("404.html")
+
+
 if __name__ == '__main__':
-    app.run(host="192.168.100.3", port=5001, debug=True)
+    app.run(host="192.168.100.3", port=5001, debug=True, threaded=True)

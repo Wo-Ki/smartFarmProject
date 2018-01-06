@@ -160,7 +160,7 @@ $('#container_tem_his').highcharts({
                             var urlNow = String(window.location.pathname).split("/")[3];
 
                             var x = (new Date(data["create_time"])).getTime(),
-                                y = parseFloat(data["hum"+urlNow]);
+                                y = parseFloat(data["tem"+urlNow]);
                             // console.log("x:",x,";y:",y);
 
                             series.addPoint([x, y], true, true);

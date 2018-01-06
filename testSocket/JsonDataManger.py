@@ -12,12 +12,14 @@ class JsonDataManager(object):
     # def __init__(self):
     #     self.sqlCtrl = MysqlUpdateCtrl("192.168.100.3", "smartFarmTest", "root", "123456")
 
-    def devicesJsonData(self, jsonData, clientSocket, sqlCtrl):
+    @staticmethod
+    def devicesJsonData(jsonData, clientSocket, sqlCtrl, deviceSockets):
         """处理设备的json数据"""
 
-        global deviceSockets, lock
         # global deviceSockets
-        print "devicesJsonData:", jsonData
+        global lock
+        # global deviceSockets
+        # print "devicesJsonData:", jsonData
         if jsonData["M"] == "checkin":
             sql = "select * from devicesTable where ID = %s"
             if sqlCtrl.one(sql, (jsonData["ID"],)) is not None:
@@ -43,14 +45,14 @@ class JsonDataManager(object):
             else:
                 sqlTitles = "desc %s" % ("data" + str(jsonData["ID"]) + "Table")
                 tableTitles = [x[0] for x in sqlCtrl.all(sqlTitles)]
-                print tableTitles
+                # print tableTitles
                 sql = "insert into %s (" % ("data" + str(jsonData["ID"]) + "Table",)
                 values = []
                 for i in jsonData.keys():
                     if i in tableTitles:
                         sql += str(i) + ","
                         values.append(jsonData[i])
-                print values
+                # print values
                 sql += "create_time"
                 sql += ") values ("
                 for i in values:
@@ -58,7 +60,7 @@ class JsonDataManager(object):
                 # sql = sql[0:-1]
                 sql += "%s)"
                 # sql = sql % (datetime.now())
-                print sql
+                # print sql
                 sqlCtrl.cud(sql, (datetime.now(),))
         elif jsonData["M"] == "say":
             try:
@@ -159,21 +161,28 @@ class JsonDataManager(object):
                 deviceSockets.pop(targetID)
                 lock.release()
 
-    def flaskJsonData(self, jsonData, clientAddress, sqlCtrl):
+    @staticmethod
+    def flaskJsonData(jsonData, clientAddress, sqlCtrl, deviceSockets):
         """处理flask的json数据"""
-        global device_sockets
+        # global deviceSockets
+        print "flaskJsonData", jsonData
         if jsonData["M"] == "say":
             targetID = jsonData["ID"]
             sql = "select status from devicesTable where ID = %s"
-            if deviceSockets.get(targetID) is None and str(sqlCtrl.one(sql, (targetID))) == "0":
+            print "targetID:", targetID
+            print "deviceSockets:", deviceSockets
+            print "str(sqlCtrl.one(sql, (targetID,)))", str(sqlCtrl.one(sql, (targetID,))[0])
+            if deviceSockets.get(targetID) is None or str(sqlCtrl.one(sql, (targetID,))[0]) == "0":
                 print("flaskJsonData:device off line")
                 return
-            device_sockets[targetID].send(bytes(jsonData["C"]))
+            print "AAAAAAAAA"
+            deviceSockets[targetID].send(bytes(jsonData["C"]))
+            print "BBBBBBBBBB"
 
         elif jsonData["M"] == "checkout":
             targetID = jsonData["TID"]
             sql = "select status from devicesTable where deviceID = %s"
-            if deviceSockets.get(targetID) is None and str(sqlCtrl.one(sql, (targetID))) == "0":
+            if deviceSockets.get(targetID) is None or str(sqlCtrl.one(sql, (targetID,))[0]) == "0":
                 print("flaskJsonData:Already OffLine")
                 # sendData = """{"M":"Already OffLine"}\n"""
                 # clientSocket.send(bytes(sendData))

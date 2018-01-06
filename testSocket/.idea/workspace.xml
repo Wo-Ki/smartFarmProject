@@ -16,8 +16,8 @@
     <SUITE FILE_PATH="coverage/testSocket$testSocketProcess.coverage" NAME="testSocketProcess Coverage Results" MODIFIED="1514551380828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/testSocket$updateCtrl.coverage" NAME="updateCtrl Coverage Results" MODIFIED="1515052022540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/testSocket$upDataTest.coverage" NAME="upDataTest Coverage Results" MODIFIED="1514471387506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/testSocket$testSocketThread.coverage" NAME="testSocketThread Coverage Results" MODIFIED="1515068252700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/testSocket$JsonDataManger.coverage" NAME="JsonDataManger Coverage Results" MODIFIED="1514988993378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/testSocket$testSocketThread.coverage" NAME="testSocketThread Coverage Results" MODIFIED="1515206320257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/testSocket$JsonDataManger.coverage" NAME="JsonDataManger Coverage Results" MODIFIED="1515158084799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -38,14 +38,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="testSocketThread.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="testSocketThread.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testSocketThread.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="91" column="15" selection-start-line="91" selection-start-column="15" selection-end-line="91" selection-end-column="15" />
+            <state relative-caret-position="1343">
+              <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
               <folding>
                 <element signature="e#90#103#0" expanded="true" />
-                <marker date="1515046625000" expanded="true" signature="3440:3486" ph="update devic... " />
+                <marker date="1515206117000" expanded="true" signature="3501:3547" ph="update devic... " />
               </folding>
             </state>
           </provider>
@@ -69,30 +69,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JsonDataManger.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JsonDataManger.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JsonDataManger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="115" column="12" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
+            <state relative-caret-position="86">
+              <caret line="164" column="69" selection-start-line="164" selection-start-column="69" selection-end-line="164" selection-end-column="69" />
               <folding>
                 <element signature="e#89#118#0" expanded="true" />
-                <marker date="1515052193000" expanded="true" signature="586:626" ph="select * fro... devicesTable" />
-                <marker date="1515052193000" expanded="true" signature="755:815" ph="update devic... " />
-                <marker date="1515052193000" expanded="true" signature="925:992" ph="insert into devicesTable... " />
-                <marker date="1515052193000" expanded="true" signature="1275:1315" ph="select * fro... devicesTable" />
-                <marker date="1515052193000" expanded="true" signature="1337:1382" ph="select statu... devicesTable" />
-                <marker date="1515052193000" expanded="true" signature="2092:2108" ph="insert into missing_value... " />
-                <marker date="1515052193000" expanded="true" signature="3311:3379" ph="insert into notificationTable... " />
-                <marker date="1515052193000" expanded="true" signature="3771:3816" ph="select statu... devicesTable" />
-                <marker date="1515052193000" expanded="true" signature="4250:4295" ph="select statu... devicesTable" />
-                <marker date="1515052193000" expanded="true" signature="4573:4612" ph="select * fro... statusTable" />
-                <marker date="1515052193000" expanded="true" signature="4864:4889" ph="insert into statusTable... " />
-                <marker date="1515052193000" expanded="true" signature="5966:6033" ph="insert into alertTable... " />
-                <marker date="1515052193000" expanded="true" signature="6811:6856" ph="select statu... devicesTable" />
-                <marker date="1515052193000" expanded="true" signature="7465:7511" ph="update devic... " />
-                <marker date="1515052193000" expanded="true" signature="7876:7921" ph="select statu... devicesTable" />
-                <marker date="1515052193000" expanded="true" signature="8263:8314" ph="select statu... devicesTable" />
-                <marker date="1515052193000" expanded="true" signature="8891:8943" ph="update devic... " />
+                <marker date="1515206104000" expanded="true" signature="631:671" ph="select * fro... devicesTable" />
+                <marker date="1515206104000" expanded="true" signature="800:860" ph="update devic... " />
+                <marker date="1515206104000" expanded="true" signature="970:1037" ph="insert into devicesTable... " />
+                <marker date="1515206104000" expanded="true" signature="1320:1360" ph="select * fro... devicesTable" />
+                <marker date="1515206104000" expanded="true" signature="1382:1427" ph="select statu... devicesTable" />
+                <marker date="1515206104000" expanded="true" signature="2139:2155" ph="insert into missing_value... " />
+                <marker date="1515206104000" expanded="true" signature="3362:3430" ph="insert into notificationTable... " />
+                <marker date="1515206104000" expanded="true" signature="3822:3867" ph="select statu... devicesTable" />
+                <marker date="1515206104000" expanded="true" signature="4301:4346" ph="select statu... devicesTable" />
+                <marker date="1515206104000" expanded="true" signature="4624:4663" ph="select * fro... statusTable" />
+                <marker date="1515206104000" expanded="true" signature="4915:4940" ph="insert into statusTable... " />
+                <marker date="1515206104000" expanded="true" signature="6017:6084" ph="insert into alertTable... " />
+                <marker date="1515206104000" expanded="true" signature="6862:6907" ph="select statu... devicesTable" />
+                <marker date="1515206104000" expanded="true" signature="7516:7562" ph="update devic... " />
+                <marker date="1515206104000" expanded="true" signature="7995:8040" ph="select statu... devicesTable" />
+                <marker date="1515206104000" expanded="true" signature="8629:8680" ph="select statu... devicesTable" />
+                <marker date="1515206104000" expanded="true" signature="9260:9312" ph="update devic... " />
               </folding>
             </state>
           </provider>
@@ -117,9 +117,9 @@
         <option value="$PROJECT_DIR$/testSocketSelect.py" />
         <option value="$PROJECT_DIR$/testSocketProcess.py" />
         <option value="$PROJECT_DIR$/updateCtrl.py" />
-        <option value="$PROJECT_DIR$/testSocketThread.py" />
         <option value="$PROJECT_DIR$/MysqlUpdateCtrl.py" />
         <option value="$PROJECT_DIR$/JsonDataManger.py" />
+        <option value="$PROJECT_DIR$/testSocketThread.py" />
       </list>
     </option>
   </component>
@@ -130,8 +130,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="89" />
-    <option name="y" value="28" />
+    <option name="x" value="169" />
+    <option name="y" value="122" />
     <option name="width" value="1440" />
     <option name="height" value="827" />
   </component>
@@ -189,7 +189,7 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/testSocketThread.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../giftCar/giftCar_socket" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
@@ -535,16 +535,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="89" y="28" width="1440" height="827" extended-state="0" />
-    <editor active="true" />
+    <frame x="169" y="122" width="1440" height="827" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19742489" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20886981" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292517" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39863947" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3360544" sideWeight="0.50858366" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32789117" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3360544" sideWeight="0.49713877" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3360544" sideWeight="0.4914163" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27891156" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -554,7 +555,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -580,23 +580,23 @@
           <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
           <folding>
             <element signature="e#89#118#0" expanded="true" />
-            <marker date="1515052193000" expanded="true" signature="586:626" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="755:815" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="925:992" ph="insert into devicesTable... " />
-            <marker date="1515052193000" expanded="true" signature="1275:1315" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="1337:1382" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="2092:2108" ph="insert into missing_value... " />
-            <marker date="1515052193000" expanded="true" signature="3311:3379" ph="insert into notificationTable... " />
-            <marker date="1515052193000" expanded="true" signature="3771:3816" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4250:4295" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4573:4612" ph="select * fro... statusTable" />
-            <marker date="1515052193000" expanded="true" signature="4864:4889" ph="insert into statusTable... " />
-            <marker date="1515052193000" expanded="true" signature="5966:6033" ph="insert into alertTable... " />
-            <marker date="1515052193000" expanded="true" signature="6811:6856" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="7465:7511" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="7876:7921" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8263:8314" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8891:8943" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="631:671" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="800:860" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="970:1037" ph="insert into devicesTable... " />
+            <marker date="1515206104000" expanded="true" signature="1320:1360" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="1382:1427" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="2139:2155" ph="insert into missing_value... " />
+            <marker date="1515206104000" expanded="true" signature="3362:3430" ph="insert into notificationTable... " />
+            <marker date="1515206104000" expanded="true" signature="3822:3867" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4301:4346" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4624:4663" ph="select * fro... statusTable" />
+            <marker date="1515206104000" expanded="true" signature="4915:4940" ph="insert into statusTable... " />
+            <marker date="1515206104000" expanded="true" signature="6017:6084" ph="insert into alertTable... " />
+            <marker date="1515206104000" expanded="true" signature="6862:6907" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="7516:7562" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="7995:8040" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="8629:8680" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="9260:9312" ph="update devic... " />
           </folding>
         </state>
       </provider>
@@ -646,23 +646,23 @@
           <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
           <folding>
             <element signature="e#89#118#0" expanded="true" />
-            <marker date="1515052193000" expanded="true" signature="586:626" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="755:815" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="925:992" ph="insert into devicesTable... " />
-            <marker date="1515052193000" expanded="true" signature="1275:1315" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="1337:1382" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="2092:2108" ph="insert into missing_value... " />
-            <marker date="1515052193000" expanded="true" signature="3311:3379" ph="insert into notificationTable... " />
-            <marker date="1515052193000" expanded="true" signature="3771:3816" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4250:4295" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4573:4612" ph="select * fro... statusTable" />
-            <marker date="1515052193000" expanded="true" signature="4864:4889" ph="insert into statusTable... " />
-            <marker date="1515052193000" expanded="true" signature="5966:6033" ph="insert into alertTable... " />
-            <marker date="1515052193000" expanded="true" signature="6811:6856" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="7465:7511" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="7876:7921" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8263:8314" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8891:8943" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="631:671" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="800:860" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="970:1037" ph="insert into devicesTable... " />
+            <marker date="1515206104000" expanded="true" signature="1320:1360" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="1382:1427" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="2139:2155" ph="insert into missing_value... " />
+            <marker date="1515206104000" expanded="true" signature="3362:3430" ph="insert into notificationTable... " />
+            <marker date="1515206104000" expanded="true" signature="3822:3867" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4301:4346" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4624:4663" ph="select * fro... statusTable" />
+            <marker date="1515206104000" expanded="true" signature="4915:4940" ph="insert into statusTable... " />
+            <marker date="1515206104000" expanded="true" signature="6017:6084" ph="insert into alertTable... " />
+            <marker date="1515206104000" expanded="true" signature="6862:6907" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="7516:7562" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="7995:8040" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="8629:8680" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="9260:9312" ph="update devic... " />
           </folding>
         </state>
       </provider>
@@ -712,23 +712,23 @@
           <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
           <folding>
             <element signature="e#89#118#0" expanded="true" />
-            <marker date="1515052193000" expanded="true" signature="586:626" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="755:815" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="925:992" ph="insert into devicesTable... " />
-            <marker date="1515052193000" expanded="true" signature="1275:1315" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="1337:1382" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="2092:2108" ph="insert into missing_value... " />
-            <marker date="1515052193000" expanded="true" signature="3311:3379" ph="insert into notificationTable... " />
-            <marker date="1515052193000" expanded="true" signature="3771:3816" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4250:4295" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4573:4612" ph="select * fro... statusTable" />
-            <marker date="1515052193000" expanded="true" signature="4864:4889" ph="insert into statusTable... " />
-            <marker date="1515052193000" expanded="true" signature="5966:6033" ph="insert into alertTable... " />
-            <marker date="1515052193000" expanded="true" signature="6811:6856" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="7465:7511" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="7876:7921" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8263:8314" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8891:8943" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="631:671" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="800:860" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="970:1037" ph="insert into devicesTable... " />
+            <marker date="1515206104000" expanded="true" signature="1320:1360" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="1382:1427" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="2139:2155" ph="insert into missing_value... " />
+            <marker date="1515206104000" expanded="true" signature="3362:3430" ph="insert into notificationTable... " />
+            <marker date="1515206104000" expanded="true" signature="3822:3867" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4301:4346" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4624:4663" ph="select * fro... statusTable" />
+            <marker date="1515206104000" expanded="true" signature="4915:4940" ph="insert into statusTable... " />
+            <marker date="1515206104000" expanded="true" signature="6017:6084" ph="insert into alertTable... " />
+            <marker date="1515206104000" expanded="true" signature="6862:6907" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="7516:7562" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="7995:8040" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="8629:8680" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="9260:9312" ph="update devic... " />
           </folding>
         </state>
       </provider>
@@ -778,23 +778,23 @@
           <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
           <folding>
             <element signature="e#89#118#0" expanded="true" />
-            <marker date="1515052193000" expanded="true" signature="586:626" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="755:815" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="925:992" ph="insert into devicesTable... " />
-            <marker date="1515052193000" expanded="true" signature="1275:1315" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="1337:1382" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="2092:2108" ph="insert into missing_value... " />
-            <marker date="1515052193000" expanded="true" signature="3311:3379" ph="insert into notificationTable... " />
-            <marker date="1515052193000" expanded="true" signature="3771:3816" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4250:4295" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4573:4612" ph="select * fro... statusTable" />
-            <marker date="1515052193000" expanded="true" signature="4864:4889" ph="insert into statusTable... " />
-            <marker date="1515052193000" expanded="true" signature="5966:6033" ph="insert into alertTable... " />
-            <marker date="1515052193000" expanded="true" signature="6811:6856" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="7465:7511" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="7876:7921" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8263:8314" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8891:8943" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="631:671" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="800:860" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="970:1037" ph="insert into devicesTable... " />
+            <marker date="1515206104000" expanded="true" signature="1320:1360" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="1382:1427" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="2139:2155" ph="insert into missing_value... " />
+            <marker date="1515206104000" expanded="true" signature="3362:3430" ph="insert into notificationTable... " />
+            <marker date="1515206104000" expanded="true" signature="3822:3867" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4301:4346" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4624:4663" ph="select * fro... statusTable" />
+            <marker date="1515206104000" expanded="true" signature="4915:4940" ph="insert into statusTable... " />
+            <marker date="1515206104000" expanded="true" signature="6017:6084" ph="insert into alertTable... " />
+            <marker date="1515206104000" expanded="true" signature="6862:6907" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="7516:7562" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="7995:8040" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="8629:8680" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="9260:9312" ph="update devic... " />
           </folding>
         </state>
       </provider>
@@ -1008,40 +1008,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testSocketThread.py">
+    <entry file="file://$PROJECT_DIR$/JsonDataManger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="91" column="15" selection-start-line="91" selection-start-column="15" selection-end-line="91" selection-end-column="15" />
+        <state relative-caret-position="86">
+          <caret line="164" column="69" selection-start-line="164" selection-start-column="69" selection-end-line="164" selection-end-column="69" />
           <folding>
-            <element signature="e#90#103#0" expanded="true" />
-            <marker date="1515046625000" expanded="true" signature="3440:3486" ph="update devic... " />
+            <element signature="e#89#118#0" expanded="true" />
+            <marker date="1515206104000" expanded="true" signature="631:671" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="800:860" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="970:1037" ph="insert into devicesTable... " />
+            <marker date="1515206104000" expanded="true" signature="1320:1360" ph="select * fro... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="1382:1427" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="2139:2155" ph="insert into missing_value... " />
+            <marker date="1515206104000" expanded="true" signature="3362:3430" ph="insert into notificationTable... " />
+            <marker date="1515206104000" expanded="true" signature="3822:3867" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4301:4346" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="4624:4663" ph="select * fro... statusTable" />
+            <marker date="1515206104000" expanded="true" signature="4915:4940" ph="insert into statusTable... " />
+            <marker date="1515206104000" expanded="true" signature="6017:6084" ph="insert into alertTable... " />
+            <marker date="1515206104000" expanded="true" signature="6862:6907" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="7516:7562" ph="update devic... " />
+            <marker date="1515206104000" expanded="true" signature="7995:8040" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="8629:8680" ph="select statu... devicesTable" />
+            <marker date="1515206104000" expanded="true" signature="9260:9312" ph="update devic... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JsonDataManger.py">
+    <entry file="file://$PROJECT_DIR$/testSocketThread.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="115" column="12" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
+        <state relative-caret-position="1343">
+          <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
           <folding>
-            <element signature="e#89#118#0" expanded="true" />
-            <marker date="1515052193000" expanded="true" signature="586:626" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="755:815" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="925:992" ph="insert into devicesTable... " />
-            <marker date="1515052193000" expanded="true" signature="1275:1315" ph="select * fro... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="1337:1382" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="2092:2108" ph="insert into missing_value... " />
-            <marker date="1515052193000" expanded="true" signature="3311:3379" ph="insert into notificationTable... " />
-            <marker date="1515052193000" expanded="true" signature="3771:3816" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4250:4295" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="4573:4612" ph="select * fro... statusTable" />
-            <marker date="1515052193000" expanded="true" signature="4864:4889" ph="insert into statusTable... " />
-            <marker date="1515052193000" expanded="true" signature="5966:6033" ph="insert into alertTable... " />
-            <marker date="1515052193000" expanded="true" signature="6811:6856" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="7465:7511" ph="update devic... " />
-            <marker date="1515052193000" expanded="true" signature="7876:7921" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8263:8314" ph="select statu... devicesTable" />
-            <marker date="1515052193000" expanded="true" signature="8891:8943" ph="update devic... " />
+            <element signature="e#90#103#0" expanded="true" />
+            <marker date="1515206117000" expanded="true" signature="3501:3547" ph="update devic... " />
           </folding>
         </state>
       </provider>

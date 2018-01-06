@@ -269,7 +269,7 @@ $(function () {
         function managerData(data) {
             console.log("data:", data);
             var dataJson = JSON.stringify(data);
-            sessionStorage.setItem("greenhouseTemHumData",dataJson);
+            sessionStorage.setItem("greenhouseTemHumData", dataJson);
             var point,
                 newVal,
                 inc;
@@ -332,30 +332,62 @@ $(function () {
     $winCtrlBtn = $("#winCtrlBtn");
     $winCtrlBtn.click(function () {
         if ($winCtrlBtn.is(':checked')) {
-            $("#wind_msg").html("已开始通风");
+            var jsonData = {"M": "say", "ID": "1001", "C": "windCtrl_1", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#wind_msg").html("已开始通风");
+            });
+
+
         }
         else {
-            $("#wind_msg").html("已关闭通风");
+            var jsonData = {"M": "say", "ID": "1001", "C": "windCtrl_0", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#wind_msg").html("已关闭通风");
+
+            });
         }
     });
     // 开门按钮
     $doorCtrlBtn = $("#doorCtrlBtn");
     $doorCtrlBtn.click(function () {
         if ($doorCtrlBtn.is(':checked')) {
-            $("#door_msg").html("已经开门");
+            var jsonData = {"M": "say", "ID": "1001", "C": "doorCtrl_1", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#door_msg").html("已经开门");
+
+            });
+
         }
         else {
-            $("#door_msg").html("已关门");
+            var jsonData = {"M": "say", "ID": "1001", "C": "doorCtrl_0", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#door_msg").html("已关门");
+
+            });
+
         }
     });
-    // 开门按钮
+    // 开灯按钮
     $lightCtrlBtn = $("#lightCtrlBtn");
     $lightCtrlBtn.click(function () {
         if ($lightCtrlBtn.is(':checked')) {
-            $("#light_msg").html("已经开灯");
+            var jsonData = {"M": "say", "ID": "1001", "C": "lightCtrl_1", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#light_msg").html("已经开灯");
+            });
         }
         else {
-            $("#light_msg").html("已关灯");
+            var jsonData = {"M": "say", "ID": "1001", "C": "lightCtrl_0", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#light_msg").html("已关灯");
+            });
+
         }
     });
 
@@ -363,20 +395,39 @@ $(function () {
     $water1CtrlBtn = $("#water1CtrlBtn");
     $water1CtrlBtn.click(function () {
         if ($water1CtrlBtn.is(':checked')) {
-            $("#water1_msg").html("已开始喷灌");
+            var jsonData = {"M": "say", "ID": "1001", "C": "water1Ctrl_1", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#water1_msg").html("已开始喷灌");
+            });
+
         }
         else {
-            $("#water1_msg").html("已关闭喷灌");
+            var jsonData = {"M": "say", "ID": "1001", "C": "water1Ctrl_0", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#water1_msg").html("已关闭喷灌");
+            });
+
         }
     });
-    // 喷灌1
+    // 喷灌2
     $water2CtrlBtn = $("#water2CtrlBtn");
     $water2CtrlBtn.click(function () {
         if ($water2CtrlBtn.is(':checked')) {
-            $("#water2_msg").html("已开始喷灌");
+            var jsonData = {"M": "say", "ID": "1001", "C": "water2Ctrl_1", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#water2_msg").html("已开始喷灌");
+            });
+
         }
         else {
-            $("#water2_msg").html("已关闭喷灌");
+            var jsonData = {"M": "say", "ID": "1001", "C": "water2Ctrl_0", T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+                console.log(jsonData);
+                $("#water2_msg").html("已关闭喷灌");
+            });
         }
     });
 
