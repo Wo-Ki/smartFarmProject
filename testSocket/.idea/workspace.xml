@@ -41,8 +41,8 @@
       <file leaf-file-name="testSocketThread.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testSocketThread.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+            <state relative-caret-position="290">
+              <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="117" selection-end-column="28" />
               <folding>
                 <element signature="e#90#103#0" expanded="true" />
                 <marker date="1515206117000" expanded="true" signature="3501:3547" ph="update devic... " />
@@ -1037,8 +1037,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testSocketThread.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+        <state relative-caret-position="290">
+          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="117" selection-end-column="28" />
           <folding>
             <element signature="e#90#103#0" expanded="true" />
             <marker date="1515206117000" expanded="true" signature="3501:3547" ph="update devic... " />
