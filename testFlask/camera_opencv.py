@@ -4,13 +4,15 @@ from base_camera import BaseCamera
 import datetime
 import time
 import imutils
+from models import GreenHouseImages
+from MysqlUpdateCtrl import MysqlUpdateCtrl
 
 
 class Camera(BaseCamera):
     video_source = 0
     min_area = 5000
-
     firstFrame = None
+    sqlCtrl = MysqlUpdateCtrl("192.168.100.3", "smartFarmTest", "root", "123456")
 
     @staticmethod
     def set_video_source(source):
@@ -57,9 +59,14 @@ class Camera(BaseCamera):
                 text = "Occupied"
                 # 在当前帧上写文字和日期
             cv2.putText(frame, "Greenhouse Room status:{}".format(text), (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
-                            (0, 0, 255), 2)
+                        (0, 0, 255), 2)
             cv2.putText(frame, datetime.datetime.now().strftime("%A %d %B %Y %I:%M:%S%p"),
-                            (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+                        (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+            # 保存图片
+            if text == "Occupied" :
+                sql = "insert into greenHouseImages (imgData,create_time) values (%s, %s)"
+                Camera.sqlCtrl.cud(sql, (cv2.imencode('.jpg', frame)[1].tobytes(), datetime.datetime.now()))
 
-            # encode as a jpeg image and return it
+                # encode as a jpeg image and return it
             yield cv2.imencode('.jpg', frame)[1].tobytes()
+

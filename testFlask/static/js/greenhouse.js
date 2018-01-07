@@ -6,8 +6,8 @@ $(function () {
         },
         title: null,
         pane: {
-            center: ['50%', '85%'],
-            size: '140%',
+            center: ['50%', '70%'],
+            size: '100%',
             startAngle: -90,
             endAngle: 90,
             background: {
@@ -31,7 +31,7 @@ $(function () {
             tickPixelInterval: 400,
             tickWidth: 0,
             title: {
-                y: -70
+                y: -60
             },
             labels: {
                 y: 16
@@ -63,7 +63,7 @@ $(function () {
             name: '大棚内湿度',
             data: [80],
             dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                format: '<div style="text-align:center"><span style="font-size:20px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
                 '<span style="font-size:12px;color:silver">%</span></div>'
             },
@@ -88,7 +88,7 @@ $(function () {
             name: '大棚内温度',
             data: [1],
             dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                format: '<div style="text-align:center"><span style="font-size:20px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
                 '<span style="font-size:12px;color:silver">℃</span></div>'
             },
@@ -113,7 +113,7 @@ $(function () {
             name: '大棚外湿度',
             data: [1],
             dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                format: '<div style="text-align:center"><span style="font-size:20px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
                 '<span style="font-size:12px;color:silver">%</span></div>'
             },
@@ -138,7 +138,7 @@ $(function () {
             name: '大棚外温度',
             data: [1],
             dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                format: '<div style="text-align:center"><span style="font-size:20px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
                 '<span style="font-size:12px;color:silver">℃</span></div>'
             },
@@ -164,7 +164,7 @@ $(function () {
             name: '土壤1温度',
             data: [1],
             dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                format: '<div style="text-align:center"><span style="font-size:20px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
                 '<span style="font-size:12px;color:silver">℃</span></div>'
             },
@@ -189,7 +189,7 @@ $(function () {
             name: '土壤1湿度',
             data: [1],
             dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                format: '<div style="text-align:center"><span style="font-size:20px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
                 '<span style="font-size:12px;color:silver">%</span></div>'
             },
@@ -214,7 +214,7 @@ $(function () {
             name: '土壤2温度',
             data: [1],
             dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                format: '<div style="text-align:center"><span style="font-size:20px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
                 '<span style="font-size:12px;color:silver">℃</span></div>'
             },
@@ -240,7 +240,7 @@ $(function () {
             name: '土壤2湿度',
             data: [1],
             dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                format: '<div style="text-align:center"><span style="font-size:20px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
                 '<span style="font-size:12px;color:silver">%</span></div>'
             },
@@ -326,8 +326,17 @@ $(function () {
             console.log(ui.position.left);
             var v = parseInt(ui.position.left / $box_tem_parent.width() * 50);
             $("#tem_set_value").text(v);
+        },
+        // 当停止滑动滑块时，发送滑块数据，即温度值
+        stop: function (ev, ui) {
+            var v = parseInt(ui.position.left / $box_tem_parent.width() * 50);
+            var jsonData = {"M": "say", "ID": "1001", "C": "temCtrl_ "+String(v), T: (new Date()).getTime()};
+            $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
+            });
         }
+
     });
+
     // 通风按钮
     $winCtrlBtn = $("#winCtrlBtn");
     $winCtrlBtn.click(function () {
@@ -335,8 +344,8 @@ $(function () {
             var jsonData = {"M": "say", "ID": "1001", "C": "windCtrl_1", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#wind_msg").html("已开始通风");
             });
+            $("#wind_msg").html("已开始通风");
 
 
         }
@@ -344,9 +353,8 @@ $(function () {
             var jsonData = {"M": "say", "ID": "1001", "C": "windCtrl_0", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#wind_msg").html("已关闭通风");
-
             });
+            $("#wind_msg").html("已关闭通风");
         }
     });
     // 开门按钮
@@ -356,19 +364,15 @@ $(function () {
             var jsonData = {"M": "say", "ID": "1001", "C": "doorCtrl_1", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#door_msg").html("已经开门");
-
             });
-
+            $("#door_msg").html("已经开门");
         }
         else {
             var jsonData = {"M": "say", "ID": "1001", "C": "doorCtrl_0", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#door_msg").html("已关门");
-
             });
-
+            $("#door_msg").html("已关门");
         }
     });
     // 开灯按钮
@@ -378,15 +382,16 @@ $(function () {
             var jsonData = {"M": "say", "ID": "1001", "C": "lightCtrl_1", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#light_msg").html("已经开灯");
             });
+            $("#light_msg").html("已经开灯");
+
         }
         else {
             var jsonData = {"M": "say", "ID": "1001", "C": "lightCtrl_0", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#light_msg").html("已关灯");
             });
+            $("#light_msg").html("已关灯");
 
         }
     });
@@ -398,17 +403,15 @@ $(function () {
             var jsonData = {"M": "say", "ID": "1001", "C": "water1Ctrl_1", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#water1_msg").html("已开始喷灌");
             });
-
+            $("#water1_msg").html("已开始喷灌");
         }
         else {
             var jsonData = {"M": "say", "ID": "1001", "C": "water1Ctrl_0", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#water1_msg").html("已关闭喷灌");
             });
-
+            $("#water1_msg").html("已关闭喷灌");
         }
     });
     // 喷灌2
@@ -418,16 +421,15 @@ $(function () {
             var jsonData = {"M": "say", "ID": "1001", "C": "water2Ctrl_1", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#water2_msg").html("已开始喷灌");
             });
-
+            $("#water2_msg").html("已开始喷灌");
         }
         else {
             var jsonData = {"M": "say", "ID": "1001", "C": "water2Ctrl_0", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
-                $("#water2_msg").html("已关闭喷灌");
             });
+            $("#water2_msg").html("已关闭喷灌");
         }
     });
 

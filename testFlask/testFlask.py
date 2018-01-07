@@ -4,13 +4,14 @@
 # creator = wangkai
 # creation time = 2017/12/25 08:10 
 
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request, redirect, url_for
 import config
-from models import DevicesTable, DataChenTable, NotificationTable, AlertTable, LogTable, StatusTable
+from models import DevicesTable, DataChenTable, NotificationTable, AlertTable, LogTable, StatusTable, GreenHouseImages
 from exts import db
 from sqlalchemy import or_
 from camera_opencv import Camera
 import json
+import base64
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -42,8 +43,8 @@ def data():
     return json_data
 
 
-@app.route("/data/greenhouse/<page>")
-def greenhouse_his(page):
+@app.route("/greenhouse/<page>")
+def greenhouseHis(page):
     if page == "In":
         return render_template("greenhouseHis/greenhouseIn.html")
     elif page == "Out":
@@ -54,6 +55,17 @@ def greenhouse_his(page):
         return render_template("greenhouseHis/greenhouseSoil2.html")
     else:
         return "Not Found"
+
+
+@app.route("/data/greenhouse/<page>", methods=["GET", "POST"])
+def greenhouseHisData(page):
+    if page == "In":
+        oldData = db.session.query(DataChenTable.humIn, DataChenTable.temIn, DataChenTable.create_time).all()
+        contexts = {"contexts": [[i[0], i[1], str(i[2])] for i in oldData]}
+        print "oldData:", contexts["contexts"][0]
+        jsonData = json.dumps(contexts)
+        print "jsonData type:", type(jsonData)
+        return jsonData
 
 
 def gen(camera):
@@ -69,9 +81,13 @@ def monitorDataGreenhouse():
     return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-@app.route("/monitor/")
+@app.route("/monitor/", methods=["GET", "POST"])
 def monitor():
-    return render_template("monitor.html")
+    if request.method == "GET":
+        return render_template("monitor.html")
+    else:
+        imgs = GreenHouseImages.query.order_by("-create_time").all()
+        return render_template("monitor.html", imgs=imgs, base64=base64)
 
 
 @app.errorhandler(404)

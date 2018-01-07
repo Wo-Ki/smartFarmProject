@@ -83,3 +83,10 @@ class StatusTable(db.Model):
     col5 = db.Column(db.String(50))
     col6 = db.Column(db.String(50))
     col7 = db.Column(db.String(50))
+
+
+class GreenHouseImages(db.Model):
+    __tablename__ = "greenHouseImages"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    imgData = db.Column(db.BLOB)
+    create_time = db.Column(db.DateTime, default=datetime.now)
