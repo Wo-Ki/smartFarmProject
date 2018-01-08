@@ -28,22 +28,48 @@ def greenhouse():
     return render_template("greenhouse.html")
 
 
-@app.route("/data/greenhouse/")
-def data():
-    newData = DataChenTable.query.order_by("-create_time").first()
-    # json_data = {"id": newData.id, "device_id": device_id, "Hum": newData.hum_value, "Tem": newData.tem_value,
-    #              "create_time": str(newData.create_time)}
-    # json_data = json.dumps(newData)
-    # json_data = json.loads(json_data)
-    jsonData = {"ID": newData.ID, "temIn": newData.temIn, "humIn": newData.humIn, "temOut": newData.temOut,
-                "humOut": newData.humOut, "temSoil1": newData.temSoil1, "humSoil1": newData.humSoil1,
-                "temSoil2": newData.temSoil2, "humSoil2": newData.humSoil2, "create_time": str(newData.create_time)}
-    json_data = json.dumps(jsonData)
+@app.route("/data/greenhouse/<value>", methods=["POST"])
+def greenhouseData(value):
+    if value == "In":
+        data = db.session.query(DataChenTable.humIn, DataChenTable.temIn,
+                                DataChenTable.create_time).order_by("-create_time").first()
+        contexts = {"contexts": [data[0], data[1], str(data[2])]}
+    elif value == "Out":
+        data = db.session.query(DataChenTable.humOut, DataChenTable.temOut,
+                                DataChenTable.create_time).order_by("-create_time").first()
+        contexts = {"contexts": [data[0], data[1], str(data[2])]}
+    elif value == "Soil1":
+        data = db.session.query(DataChenTable.humSoil1, DataChenTable.temSoil1,
+                                DataChenTable.create_time).order_by("-create_time").first()
+        contexts = {"contexts": [data[0], data[1], str(data[2])]}
+    elif value == "Soil2":
+        data = db.session.query(DataChenTable.humSoil2, DataChenTable.temSoil2,
+                                DataChenTable.create_time).order_by("-create_time").first()
+        contexts = {"contexts": [data[0], data[1], str(data[2])]}
+    elif value == "status":
+        data1 = DevicesTable.query.filter(DevicesTable.ID == "1001").first().status
+        data2 = StatusTable.query.filter(StatusTable.ID == "1001").first()
+        titles = [i for i in StatusTable.__dict__.keys() if not i.find("col")]
+        data2Dict = {}
+        for title in titles:
+            if getattr(data2, title):
+                data2Dict[title] = ":".join(getattr(data2, title).split("_"))
+        print "data2Dict", data2Dict
+        data2Json = json.dumps(data2Dict)
+        contexts = {"contexts": [data1, data2Json]}
+    elif value == "all":
+        data = DataChenTable.query.order_by("-create_time").first()
+        contexts = {"contexts": {"ID": data.ID, "temIn": data.temIn, "humIn": data.humIn, "temOut": data.temOut,
+                                 "humOut": data.humOut, "temSoil1": data.temSoil1, "humSoil1": data.humSoil1,
+                                 "temSoil2": data.temSoil2, "humSoil2": data.humSoil2,
+                                 "create_time": str(data.create_time)}}
+
+    json_data = json.dumps(contexts)
     print "/data/greenhouse/ json_data:", json_data
     return json_data
 
 
-@app.route("/greenhouse/<page>")
+@app.route("/greenhouseHis/<page>")
 def greenhouseHis(page):
     if page == "In":
         return render_template("greenhouseHis/greenhouseIn.html")
@@ -57,7 +83,7 @@ def greenhouseHis(page):
         return "Not Found"
 
 
-@app.route("/data/greenhouse/<page>", methods=["GET", "POST"])
+@app.route("/data/greenhouseHis/<page>", methods=["POST"])
 def greenhouseHisData(page):
     if page == "In":
         oldData = db.session.query(DataChenTable.humIn, DataChenTable.temIn, DataChenTable.create_time).all()

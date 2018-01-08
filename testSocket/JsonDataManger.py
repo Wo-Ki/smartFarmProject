@@ -89,6 +89,7 @@ class JsonDataManager(object):
             sendData = """{"M":"isOL","R":{},"T":"{}"}\n""".format(str(onDicts), time.time())
             clientSocket.send(bytes(sendData))
         elif jsonData["M"] == "status":
+            print "status data:", jsonData
             sql = "select status from devicesTable where ID = %s"
             if deviceSockets.get(jsonData["ID"]) is None and str(sqlCtrl.one(sql, (jsonData["ID"]))) == "0":
                 print "devicesJsonData status: off line!!!"
@@ -122,9 +123,9 @@ class JsonDataManager(object):
                         sql += str(i) + "=\"" + str(jsonData[i]) + "\","
 
                 sql += " changeTime=%s where ID = %s"
-                print sql
+                print "status sql:", sql
                 sqlCtrl.cud(sql, (datetime.now(), jsonData["ID"]))
-            clientSocket.send(bytes("""{"M":"{OK}"}\n"""))
+            clientSocket.send(bytes("""{"M":"OK"}\n"""))
         elif jsonData["M"] == "alert":
             alertData = jsonData["C"]
             sourceID = list(deviceSockets.keys())[list(deviceSockets.values()).index(clientSocket)]
@@ -175,10 +176,7 @@ class JsonDataManager(object):
             if deviceSockets.get(targetID) is None or str(sqlCtrl.one(sql, (targetID,))[0]) == "0":
                 print("flaskJsonData:device off line")
                 return
-            print "AAAAAAAAA"
             deviceSockets[targetID].send(bytes(jsonData["C"]))
-            print "BBBBBBBBBB"
-
         elif jsonData["M"] == "checkout":
             targetID = jsonData["TID"]
             sql = "select status from devicesTable where deviceID = %s"

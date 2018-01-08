@@ -204,117 +204,180 @@
 //
 // });
 
+var urlNow = String(window.location.pathname).split("/")[2];
+
+$.ajax({
+    type: 'POST',
+    url: '/data/greenhouseHis/' + urlNow,
+    dataType: 'json',
+    timeout: 500,
+    // context: $('body'),
+    success: function (datas) {
+        // Supposing this JSON payload was received:
+
+        // console.log("data:", data);
+        // var urlNow = String(window.location.pathname).split("/")[3];
+        var listDatas = datas["contexts"];
+        var returnHumData = [];
+        var returnTemData = [];
+        for (var d in listDatas) {
+            var time = (new Date(listDatas[d][2])).getTime();
+            var hum = parseFloat(listDatas[d][0]);
+            var tem = parseFloat(listDatas[d][1]);
+            returnHumData.push([time, hum]);
+            returnTemData.push([time, tem]);
+        }
+
+        console.log("returnHumData:", returnHumData);
+        createHumFunc(returnHumData);
+        createTemFunc(returnTemData);
+
+    },
+    error: function (xhr, type) {
+        console.log('Ajax error! container_hum_his')
+    }
+
+});
+
 
 Highcharts.setOptions({
     global: {
         useUTC: false
+    },
+    credits: {
+        enabled: false
     }
 });
-// Create the chart
-$('#container_hum_his').highcharts('StockChart', {
-    chart: {
-        events: {
-            load: function () {
-                // set up the updating of the chart each second
-                var series = this.series[0];
+// Create the chart 湿度
+function createHumFunc(data) {
+    $('#container_hum_his').highcharts('StockChart', {
+        chart: {
+            events: {
+                load: function () {
+                    // set up the updating of the chart each second
+                    var series = this.series[0];
 
-                setInterval(function () {
-                    // *****
-                    $.ajax({
-                        type: 'GET',
-                        url: '/data/greenhouse/',
-                        dataType: 'json',
-                        timeout: 300,
-                        // context: $('body'),
-                        success: function (data) {
-                            var x = (new Date(data["create_time"])).getTime();
-                            var y = parseFloat(data["humIn"]);
-                            console.log("new x y:", x, y);
-                            series.addPoint([x, y], true, true);
-                        },
-                        error: function (xhr, type) {
-                            console.log('Ajax error!')
-                        }
-                    });
-                    // *****
-                }, 1000);
+                    setInterval(function () {
+                        // *****
+                        $.ajax({
+                            type: 'POST',
+                            url: '/data/greenhouse/' + urlNow,
+                            dataType: 'json',
+                            timeout: 300,
+                            // context: $('body'),
+                            success: function (datas) {
+                                var data = datas["contexts"];
+                                var x = (new Date(data[2])).getTime();
+                                var y = parseFloat(data[0]);
+                                // console.log("new x y hum:", x, y);
+                                series.addPoint([x, y], true, true);
+                            },
+                            error: function (xhr, type) {
+                                console.log('Ajax error!')
+                            }
+                        });
+                        // *****
+                    }, 2000);
+                }
             }
-        }
-    },
-    rangeSelector: {
-        buttons: [{
-            count: 1,
-            type: 'minute',
-            text: '1M'
-        }, {
-            count: 5,
-            type: 'minute',
-            text: '5M'
-        }, {
-            type: 'all',
-            text: 'All'
-        }],
-        inputEnabled: false,
-        selected: 0
-    },
-    title: {
-        text: '大棚内部湿度历史记录(%)'
-    },
-    tooltip: {
-        split: false
-    },
-    exporting: {
-        enabled: false
-    },
-    series: [{
-        name: '随机数据',
-        data: (function () {
+        },
+        rangeSelector: {
+            buttons: [{
+                count: 1,
+                type: 'minute',
+                text: '1M'
+            }, {
+                count: 5,
+                type: 'minute',
+                text: '5M'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
+            inputEnabled: true,
+            selected: 0
+        },
+        title: {
+            text: '大棚内部湿度历史记录(%)'
+        },
+        tooltip: {
+            split: false
+        },
+        exporting: {
+            enabled: true
+        },
+        series: [{
+            name: '湿度历史数据',
+            data: data
+
+        }]
+    });
+}
 
 
-            var data = [];
-            // ***
-            // $.ajax({
-            //     type: 'POST',
-            //     url: '/data/greenhouse/In',
-            //     dataType: 'json',
-            //     timeout: 500,
-            //     // context: $('body'),
-            //     success: function (datas) {
-            //         // Supposing this JSON payload was received:
-            //
-            //         // console.log("data:", data);
-            //         // var urlNow = String(window.location.pathname).split("/")[3];
-            //         var listDatas = datas["contexts"];
-            //
-            //         for (var d in listDatas) {
-            //             var time = (new Date(listDatas[d][2])).getTime();
-            //             var hum = parseFloat(listDatas[d][0]);
-            //             data.push([time, hum]);
-            //             console.log("d time hum:", d, time, hum);
-            //
-            //         }
-            //
-            //
-            //     },
-            //     error: function (xhr, type) {
-            //         console.log('Ajax error! container_hum_his')
-            //     }
-            //
-            // });
-            // ***
+// Create the chart 温度
+function createTemFunc(data) {
+    $('#container_tem_his').highcharts('StockChart', {
+        chart: {
+            events: {
+                load: function () {
+                    // set up the updating of the chart each second
+                    var series = this.series[0];
 
-            // generate an array of random data
-            var data = [], time = (new Date()).getTime(), i;
-            for (i = -999; i <= 0; i += 1) {
-                data.push([
-                    time + i * 1000,
-                    Math.round(Math.random() * 100)
-                ]);
-                console.log("time hum:", time + i * 1000, Math.round(Math.random() * 100));
+                    setInterval(function () {
+                        // *****
+                        $.ajax({
+                            type: 'POST',
+                            url: '/data/greenhouse/' + urlNow,
+                            dataType: 'json',
+                            timeout: 300,
+                            // context: $('body'),
+                            success: function (datas) {
+                                var data = datas["contexts"];
+                                var x = (new Date(data[2])).getTime();
+                                var y = parseFloat(data[1]);
+                                // console.log("new x y tem:", x, y);
+                                series.addPoint([x, y], true, true);
+                            },
+                            error: function (xhr, type) {
+                                console.log('Ajax error!')
+                            }
+                        });
+                        // *****
+                    }, 2000);
+                }
             }
-            return data;
+        },
+        rangeSelector: {
+            buttons: [{
+                count: 1,
+                type: 'minute',
+                text: '1M'
+            }, {
+                count: 5,
+                type: 'minute',
+                text: '5M'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
+            inputEnabled: true,
+            selected: 0
+        },
+        title: {
+            text: '大棚内部温度历史记录(℃)'
+        },
+        tooltip: {
+            split: false
+        },
+        exporting: {
+            enabled: true
+        },
+        series: [{
+            name: '温度历史数据',
+            data: data
+        }]
+    });
+}
 
-        }())
-    }]
-});
 

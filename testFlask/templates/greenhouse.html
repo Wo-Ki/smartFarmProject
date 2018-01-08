@@ -18,10 +18,12 @@
     <br>
     <br>
     <div class="container">
-        <div class="page-header">
-            <h1>大棚系统
+        <div class="page-header clearfix">
+            <h1 style="float:left;">大棚系统
                 <small>flying</small>
             </h1>
+            <h4 id="deviceStatus" style="float: right">离线</h4>
+            <h4 style="float: right">状态：</h4>
         </div>
     </div>
 
@@ -166,8 +168,8 @@
                         </div>
                         <div class="panel-body">
                             <div class="pull-left">
-                                <input class='tgl tgl-ios' id='winCtrlBtn' type='checkbox'>
-                                <label class='tgl-btn' for='winCtrlBtn'></label>
+                                <input class='tgl tgl-ios' id='windCtrlBtn' type='checkbox'>
+                                <label class='tgl-btn' for='windCtrlBtn'></label>
                             </div>
                             <div class="pull-right" id="wind_msg" style="height: 33px;line-height: 33px">已关闭通风</div>
                         </div>
@@ -198,7 +200,7 @@
                                 <input class='tgl tgl-ios' id='lightCtrlBtn' type='checkbox'>
                                 <label class='tgl-btn' for='lightCtrlBtn'></label>
                             </div>
-                            <div class="pull-right" id="light_msg" style="height: 33px;line-height: 33px">已关门</div>
+                            <div class="pull-right" id="light_msg" style="height: 33px;line-height: 33px">已关灯</div>
                         </div>
                     </div>
                 </div>
@@ -235,7 +237,7 @@
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 .col-xs-12">
         <div class="panel panel-primary">
-            <div class="panel-heading"><h4>状态栏</h4></div>
+            <div class="panel-heading"><h4>日志</h4></div>
             <div class="panel-body" style="padding: 0 0;">
                 开灯
             </div>
@@ -248,6 +250,7 @@
     {#    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/highcharts-more.js") }}"></script>#}
     {#    <script type="text/javascript" src="{{ url_for("static", filename="js/extends/solid-gauge.js") }}"></script>#}
 
+    <script type="text/javascript" src="{{ url_for("static", filename="js/greenhouseGetStatus.js") }}"></script>
     <script type="text/javascript" src="{{ url_for("static", filename="js/greenhouse.js") }}"></script>
     {#    <script type="text/javascript" src="{{ url_for("static", filename="js/greenhouseHis.js") }}"></script>#}
 

@@ -95,7 +95,7 @@ if __name__ == "__main__":
     serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
     serverSocket.bind(("192.168.100.3", 8989))
-    serverSocket.listen(5)
+    serverSocket.listen(30)
 
     # jsonDataManager = JsonDataManager()
     # 全局变量，储存当前连接的设备socket

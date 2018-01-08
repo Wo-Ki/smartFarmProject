@@ -12,6 +12,7 @@ const int tcpPort = 8989;//修改为你建立的Server服务端的端口号
 
 #define pinDHT22 2
 #define pinLightCtrl 0
+#define pinWindCtrl 4
 
 SimpleDHT22 dht22;
 float dhtHum = 0.0; //温度
@@ -27,8 +28,9 @@ void setup()
   Serial.println(ssid);
   // 初始化引脚
   pinMode(pinLightCtrl, OUTPUT);
+  pinMode(pinWindCtrl, OUTPUT);
   digitalWrite(pinLightCtrl, LOW);
-
+  digitalWrite(pinWindCtrl, LOW);
   // 连上WIFI
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)//WiFi.status() ，这个函数是wifi连接状态，返回wifi链接状态
@@ -57,6 +59,8 @@ void loop()
       client.print("{\"M\":\"checkin\",\"ID\":\"" + String(ID) + "\"}\n");
       Serial.println("chickin");
       delay(500);
+      // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
+//      String sendData = "{\"M\":\"status\",\"ID\":\"" + String(ID) + "\",\"col5\":\"lightCrtl_" + String(value) + "\"}\n";
     }
 
   }
@@ -69,7 +73,9 @@ void loop()
       String msgFirst = s.substring(0, pos); // eg:"windCtrl"
       String msgSecond = s.substring(pos + 1, s.length()); // eg:"1"
       if (msgFirst == "temCtrl") {}
-      else if (msgFirst == "windCtrl") {}
+      else if (msgFirst == "windCtrl") {
+        windCtrlFunc(msgSecond);
+      }
       else if (msgFirst == "doorCtrl") {}
       else if (msgFirst == "lightCtrl") {
         lightCtrlFunc(msgSecond);
@@ -118,8 +124,10 @@ void dht11Func() {
 }
 
 void lightCtrlFunc(String value) {
+
   if (value == "1") {
     digitalWrite(pinLightCtrl, HIGH);
+
   }
   else if (value == "0") {
     digitalWrite(pinLightCtrl, LOW);
@@ -127,5 +135,28 @@ void lightCtrlFunc(String value) {
   else {
     Serial.println("lightCtrlFunc Error!!!");
   }
+  // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
+  String sendData = "{\"M\":\"status\",\"ID\":\"" + String(ID) + "\",\"col5\":\"lightCrtl_" + String(value) + "\"}\n";
+  client.print(sendData);
+  delay(200);
+  Serial.println(sendData);
+}
+
+void windCtrlFunc(String value) {
+  if (value == "1") {
+    digitalWrite(pinWindCtrl, HIGH);
+
+  }
+  else if (value == "0") {
+    digitalWrite(pinWindCtrl, LOW);
+  }
+  else {
+    Serial.println("WindCtrlFunc Error!!!");
+  }
+    // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
+  String sendData = "{\"M\":\"status\",\"ID\":\"" + String(ID) + "\",\"col3\":\"windCrtl_" + String(value) + "\"}\n";
+  client.print(sendData);
+  delay(200);
+  Serial.println(sendData);
 }
 

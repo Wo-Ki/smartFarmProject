@@ -254,15 +254,15 @@ $(function () {
     setInterval(function () {
 
         $.ajax({
-            type: 'GET',
-            url: '/data/greenhouse/',
+            type: 'POST',
+            url: '/data/greenhouse/all',
             dataType: 'json',
             timeout: 300,
             // context: $('body'),
             success: function (data) {
-                managerData(data);
+                managerData(data["contexts"]);
             },
-            error: function (xhr, type) {
+            error: function (xhr, types) {
                 console.log('Ajax error!')
             }
         });
@@ -338,23 +338,21 @@ $(function () {
     });
 
     // 通风按钮
-    $winCtrlBtn = $("#winCtrlBtn");
+    $winCtrlBtn = $("#windCtrlBtn");
     $winCtrlBtn.click(function () {
         if ($winCtrlBtn.is(':checked')) {
             var jsonData = {"M": "say", "ID": "1001", "C": "windCtrl_1", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#wind_msg").html("已开始通风");
-
-
+            // $("#wind_msg").html("已开始通风");
         }
         else {
             var jsonData = {"M": "say", "ID": "1001", "C": "windCtrl_0", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#wind_msg").html("已关闭通风");
+            // $("#wind_msg").html("已关闭通风");
         }
     });
     // 开门按钮
@@ -365,14 +363,14 @@ $(function () {
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#door_msg").html("已经开门");
+            // $("#door_msg").html("已经开门");
         }
         else {
             var jsonData = {"M": "say", "ID": "1001", "C": "doorCtrl_0", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#door_msg").html("已关门");
+            // $("#door_msg").html("已关门");
         }
     });
     // 开灯按钮
@@ -383,7 +381,7 @@ $(function () {
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#light_msg").html("已经开灯");
+            // $("#light_msg").html("已经开灯");
 
         }
         else {
@@ -391,7 +389,7 @@ $(function () {
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#light_msg").html("已关灯");
+            // $("#light_msg").html("已关灯");
 
         }
     });
@@ -404,14 +402,14 @@ $(function () {
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#water1_msg").html("已开始喷灌");
+            // $("#water1_msg").html("已开始喷灌");
         }
         else {
             var jsonData = {"M": "say", "ID": "1001", "C": "water1Ctrl_0", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#water1_msg").html("已关闭喷灌");
+            // $("#water1_msg").html("已关闭喷灌");
         }
     });
     // 喷灌2
@@ -422,14 +420,14 @@ $(function () {
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#water2_msg").html("已开始喷灌");
+            // $("#water2_msg").html("已开始喷灌");
         }
         else {
             var jsonData = {"M": "say", "ID": "1001", "C": "water2Ctrl_0", T: (new Date()).getTime()};
             $.post("http://192.168.100.3:8989", jsonData, function (data, status) {
                 console.log(jsonData);
             });
-            $("#water2_msg").html("已关闭喷灌");
+            // $("#water2_msg").html("已关闭喷灌");
         }
     });
 
