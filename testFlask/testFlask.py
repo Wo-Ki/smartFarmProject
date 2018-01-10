@@ -12,6 +12,7 @@ from sqlalchemy import or_
 from camera_opencv import Camera
 import json
 import base64
+import datetime
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -112,8 +113,28 @@ def monitor():
     if request.method == "GET":
         return render_template("monitor.html")
     else:
-        imgs = GreenHouseImages.query.order_by("-create_time").all()
-        return render_template("monitor.html", imgs=imgs, base64=base64)
+
+        imgsData = GreenHouseImages.query.order_by("-create_time").all()
+        datePick = request.form.get("datePick")
+        returnData = []
+        if datePick == "option01":
+            for value in imgsData:
+                if datetime.datetime.now().day - value.create_time.day > 1:
+                    break
+                returnData.append(value)
+        elif datePick == "option02":
+            for value in imgsData:
+                if datetime.datetime.now().day - value.create_time.day > 7:
+                    break
+                returnData.append(value)
+        elif datePick == "option03":
+            for value in imgsData:
+                if datetime.datetime.now().day - value.create_time.day > 30:
+                    break
+                returnData.append(value)
+        elif datePick == "option04":
+            returnData = imgsData
+        return render_template("monitor.html", imgsData=returnData, base64=base64)
 
 
 @app.errorhandler(404)

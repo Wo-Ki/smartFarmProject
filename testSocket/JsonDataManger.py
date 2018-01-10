@@ -170,9 +170,9 @@ class JsonDataManager(object):
         if jsonData["M"] == "say":
             targetID = jsonData["ID"]
             sql = "select status from devicesTable where ID = %s"
-            print "targetID:", targetID
-            print "deviceSockets:", deviceSockets
-            print "str(sqlCtrl.one(sql, (targetID,)))", str(sqlCtrl.one(sql, (targetID,))[0])
+            # print "targetID:", targetID
+            # print "deviceSockets:", deviceSockets
+            # print "str(sqlCtrl.one(sql, (targetID,)))", str(sqlCtrl.one(sql, (targetID,))[0])
             if deviceSockets.get(targetID) is None or str(sqlCtrl.one(sql, (targetID,))[0]) == "0":
                 print("flaskJsonData:device off line")
                 return

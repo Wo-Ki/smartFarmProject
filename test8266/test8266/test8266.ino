@@ -18,6 +18,8 @@ SimpleDHT22 dht22;
 float dhtHum = 0.0; //温度
 float dhtTem = 0.0;//湿度
 
+String temCtrlValue = "off"; // 将温控值保存问全局变量,默认关闭自动温控
+
 void setup()
 { //pinMode(relay1,OUTPUT);
   Serial.begin(115200);
@@ -60,19 +62,26 @@ void loop()
       Serial.println("chickin");
       delay(500);
       // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
-//      String sendData = "{\"M\":\"status\",\"ID\":\"" + String(ID) + "\",\"col5\":\"lightCrtl_" + String(value) + "\"}\n";
+      sendState(1, "water1Ctrl", "0");
+      sendState(2, "water2Ctrl", "0");
+      sendState(3, "windCtrl", "0");
+      sendState(4, "doorCtrl", "0");
+      sendState(5, "lightCrtl", "0");
+      sendState(6, "temCrtl", "off");
     }
 
   }
   while (client.available())//，无线读取到的数据转发到到串口
   {
     String s = client.readString();  // 接收服务器的消息,eg:"windCtrl_1"
-    Serial.print(s);
+    Serial.println(s);
     int pos = s.indexOf('_'); // 找到"_"的位置
     if (pos != -1) {
       String msgFirst = s.substring(0, pos); // eg:"windCtrl"
       String msgSecond = s.substring(pos + 1, s.length()); // eg:"1"
-      if (msgFirst == "temCtrl") {}
+      if (msgFirst == "temCtrl") {
+        temCtrlFunc(msgSecond);
+      }
       else if (msgFirst == "windCtrl") {
         windCtrlFunc(msgSecond);
       }
@@ -98,6 +107,7 @@ void loop()
     delay(500);
   }
   dht11Func();
+  temAutoCtrlFunc();
 }
 
 unsigned long lastSend = 0;
@@ -123,6 +133,21 @@ void dht11Func() {
   }
 }
 
+unsigned long lastTemCtrl = 0;
+void temAutoCtrlFunc() {
+  if (temCtrlValue == "off") {
+
+    // 以下是停止调温代码,关闭加热降温设备
+    {}
+  } else {
+    if (millis() - lastTemCtrl >= 3000) {
+      lastTemCtrl = millis();
+      // 以下开始自动调温代码
+      {}
+    }
+
+  }
+}
 void lightCtrlFunc(String value) {
 
   if (value == "1") {
@@ -136,10 +161,7 @@ void lightCtrlFunc(String value) {
     Serial.println("lightCtrlFunc Error!!!");
   }
   // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
-  String sendData = "{\"M\":\"status\",\"ID\":\"" + String(ID) + "\",\"col5\":\"lightCrtl_" + String(value) + "\"}\n";
-  client.print(sendData);
-  delay(200);
-  Serial.println(sendData);
+  sendState(5, "lightCrtl", value);
 }
 
 void windCtrlFunc(String value) {
@@ -153,10 +175,24 @@ void windCtrlFunc(String value) {
   else {
     Serial.println("WindCtrlFunc Error!!!");
   }
-    // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
-  String sendData = "{\"M\":\"status\",\"ID\":\"" + String(ID) + "\",\"col3\":\"windCrtl_" + String(value) + "\"}\n";
+  // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
+  sendState(3, "windCtrl", value);
+}
+void temCtrlFunc(String value) {
+  if (value == "off") {
+    temCtrlValue = "off";
+    sendState(6, "temCtrl", "off");
+
+  } else if (value != "off") { // 当value的值不为off时,说明开始自动调温,将全局变量temCtrlValue设为云端发来的温度值
+    temCtrlValue = value;
+    sendState(6, "temCtrl", temCtrlValue);  // 首次开启自动调温,temCtrlValue为on,然后才为温度值
+
+  }
+}
+void sendState(int col, String key, String value) { // col填1,2,3... ,key 填 windCtrl, temCtrl,lightCtrl,value填:0,1,off
+  // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
+  String sendData = "{\"M\":\"status\",\"ID\":\"" + String(ID) + "\",\"col" + String(col) + "\":\"" + String(key) + "_" + String(value) + "\"}\n";
   client.print(sendData);
   delay(200);
   Serial.println(sendData);
 }
-

@@ -146,18 +146,30 @@
             <div class="panel-body">
                 <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><span>温控</span></h3>
+                        <div class="panel-heading clearfix">
+                            <h3 class="panel-title"><span>温控</span>
+                                <div id="preTemValue" style="float: right;">无</div>
+                                <div class="" style="float: right;">&nbsp;&nbsp;预设值:
+                                </div>
                         </div>
                         <div class="panel-body">
-                            <div class="" style="float: left;height: 30px;line-height: 30px;">0&nbsp;</div>
+                            <div class="" style="float: left;height: 30px;line-height: 30px;">低&nbsp;</div>
                             <div class="con_tem">
-                                <div class="box_tem"></div>
+                                <div class="box_tem" id="temSlider">
+                                    <div id="tem_set_value" class="center-block text-center"
+                                         style="line-height: 28px;font-size: 10px;color: white">25℃
+                                    </div>
+                                </div>
                             </div>
-                            <div class="" style="float: left;height: 30px;line-height: 30px;">&nbsp;40</div>
-                            <div style="float: right;height: 30px;line-height: 30px;">&nbsp;℃</div>
-                            <div id="tem_set_value" style="float: right;height: 30px;line-height: 30px;">25</div>
-                            <div class="" style="float: right;height: 30px;line-height: 30px;">&nbsp;&nbsp;预设值：</div>
+                            <div class="" style="float: left;height: 30px;line-height: 30px;">&nbsp;高</div>
+
+                            {#                            <div style="float: right;height: 30px;line-height: 30px;">&nbsp;℃</div>#}
+
+                            <div class="pull-right">
+                                <span style="font-size: 17px;">自动：</span>
+                                <input class='tgl tgl-ios pull-right' id='autoTemBtn' type='checkbox'>
+                                <label class='tgl-btn pull-right' for='autoTemBtn'></label>
+                            </div>
                         </div>
                     </div>
                 </div>
