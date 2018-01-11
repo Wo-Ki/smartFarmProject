@@ -63,10 +63,9 @@ class Camera(BaseCamera):
             cv2.putText(frame, datetime.datetime.now().strftime("%A %d %B %Y %I:%M:%S%p"),
                         (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
             # 保存图片
-            if text == "Occupied" :
+            if text == "Occupied":
                 sql = "insert into greenHouseImages (imgData,create_time) values (%s, %s)"
                 Camera.sqlCtrl.cud(sql, (cv2.imencode('.jpg', frame)[1].tobytes(), datetime.datetime.now()))
 
                 # encode as a jpeg image and return it
             yield cv2.imencode('.jpg', frame)[1].tobytes()
-

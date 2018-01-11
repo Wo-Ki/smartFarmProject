@@ -4,7 +4,8 @@
 #define relay1 2
 const char *ssid     = "360WiFi-48681F";//这里是我的wifi，你使用时修改为你要连接的wifi ssid
 const char *password = "dianxin151";//你要连接的wifi密码
-const char *host = "192.168.100.3";//修改为手机的的tcpServer服务端的IP地址，即手机在路由器上的ip
+//const char *host = "192.168.100.3";//修改为手机的的tcpServer服务端的IP地址，即手机在路由器上的ip
+const char *host = "120.78.164.75";
 WiFiClient client;
 const int tcpPort = 8989;//修改为你建立的Server服务端的端口号
 
