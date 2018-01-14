@@ -134,7 +134,7 @@ def monitor():
                 returnData.append(value)
         elif datePick == "option04":
             returnData = imgsData
-        return render_template("monitor.html", imgsData=returnData, base64=base64 )
+        return render_template("monitor.html", imgsData=returnData, base64=base64)
         # return redirect(url_for("monitor", imgsData=returnData, base64=base64, _anchor="his"))
 
 
