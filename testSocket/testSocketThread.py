@@ -16,6 +16,10 @@ from JsonDataORMThread import JsonDataORMCtrl
 from exts import session
 from models import DevicesTable
 
+hostname = socket.gethostname()
+HOST = socket.gethostbyname(hostname)
+PORT = 8989
+
 
 class HandleClient(threading.Thread):
     """处理客户端"""
@@ -100,7 +104,7 @@ class HandleClient(threading.Thread):
 if __name__ == "__main__":
     serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    serverSocket.bind(("192.168.100.3", 8989))
+    serverSocket.bind((HOST, PORT))
     serverSocket.listen(30)
 
     # jsonDataManager = JsonDataManager()
@@ -108,6 +112,7 @@ if __name__ == "__main__":
     deviceSockets = {}
     lock = Lock()
     print "******Smart Farm Server Online*****"
+    print "HOST:", HOST, " ", "PORT:", PORT
 
     try:
         while True:
