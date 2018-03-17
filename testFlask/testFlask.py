@@ -138,6 +138,34 @@ def monitor():
         # return redirect(url_for("monitor", imgsData=returnData, base64=base64, _anchor="his"))
 
 
+@app.route("/monitorHis/", methods=["GET", "POST"])
+def monitorHis():
+    if request.method == "GET":
+        return render_template("monitorHis.html")
+    elif request.method == "POST":
+        imgsData = GreenHouseImages.query.order_by("-create_time").all()
+        datePick = request.form.get("datePick")
+        returnData = []
+        if datePick == "option01":
+            for value in imgsData:
+                if datetime.datetime.now().day - value.create_time.day > 1:
+                    break
+                returnData.append(value)
+        elif datePick == "option02":
+            for value in imgsData:
+                if datetime.datetime.now().day - value.create_time.day > 7:
+                    break
+                returnData.append(value)
+        elif datePick == "option03":
+            for value in imgsData:
+                if datetime.datetime.now().day - value.create_time.day > 30:
+                    break
+                returnData.append(value)
+        elif datePick == "option04":
+            returnData = imgsData
+        return render_template("monitorHis.html", imgsData=returnData, base64=base64)
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template("404.html")

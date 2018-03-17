@@ -136,11 +136,11 @@ class JsonDataManager(object):
             if f == "stamp":
                 sendData = str(time.time())
             elif f == "Y-m-d":
-                sendData = datetime.datetime.now().strftime("%Y-%m-%d")
+                sendData = datetime.now().strftime("%Y-%m-%d")
             elif f == "Y.m.d":
-                sendData = datetime.datetime.now().strftime("%Y.%m.%d")
+                sendData = datetime.now().strftime("%Y.%m.%d")
             elif f == "Y-m-d H:i:s":
-                sendData = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                sendData = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             else:
                 sendData = "Error"
             clientSocket.send(bytes("""{"M":"time","T":"{}"}\n""".format(sendData)))

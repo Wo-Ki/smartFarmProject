@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}
+    监控记录
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+
+{% block main %}
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>监控记录
+                <small>flying</small>
+            </h1>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">
+            <h4 class="pull-left" id="his">历史记录</h4>
+            <form action="{{ url_for("monitorHis") }}" method="post" class="form-inline pull-right" id="findPic">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-default" href="#his">查询</button>
+                </div>
+                <div class="pull-right">
+                    <select class="form-control" name="datePick">
+                        <option value="option01">一天内</option>
+                        <option value="option02">一周内</option>
+                        <option value="option03">一个月内</option>
+                        <option value="option04">所有</option>
+                    </select>
+                </div>
+
+            </form>
+        </div>
+        <div class="panel-body">
+
+            {% if not imgsData %}
+                <h4 class="text-center">无历史记录，请点击
+                    <button form="findPic" class="btn btn-default" href="#his">查询</button>
+                </h4>
+
+            {% else %}
+                <div class="row">
+                    {% for value in imgsData %}
+
+                        <div class="col-xs-6 col-md-3" style="margin-bottom: 5px">
+                            <p>{{ value.create_time }}</p><span id="picID" style="display: inline;">{{ value.id }}</span>
+                            <img src="data:;base64,{{ base64.b64encode(value.imgData) }}" alt="hisPic"
+                                 class="img-rounded pull-left img-responsive" id="hisPic"
+                                 style="cursor: pointer;"
+                            >
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-2" role="dialog" id="picModel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">详情</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="center-block" align="center"><img src="#" alt="detail" id="detailPic"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger" id="picDelete">删除</button>
+                    {#                    <button type="button" class="btn btn-primary">保存</button>#}
+                    <a href="#" download="#" class="btn btn-primary" id="picSave">保存</a>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <script>
+        {#        window.location.href = "#his";#}
+        $('img[alt=hisPic]').click(function () {
+            {#            alert("hah");#}
+            {#            $(this).toggleClass('min');#}
+            {#            $(this).toggleClass('max');#}
+            $("#detailPic").attr({"src": $(this).attr("src")});
+            $("#picSave").attr({"href": $(this).attr("src"), "download": $(this).prev("p").html() + ".png"});
+            $(this).attr({"data-toggle": "modal", "data-target": "#picModel"});
+            {#            console.log($(this).attr("src"));#}
+            $("#picDelete").click(function () {
+                var r = confirm("确定删除？");
+                if (r == true) {
+                    console.log($(this).parent("#detailPic"));
+{#                    $.post("monitor",#}
+{#                        {#}
+{#                            method: "delete",#}
+{#                          #}
+{#                        }#}
+{#                    )#}
+                }
+            })
+        });
+
+
+    </script>
+{% endblock %}

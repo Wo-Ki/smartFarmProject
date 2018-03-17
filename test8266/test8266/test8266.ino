@@ -1,13 +1,14 @@
 #include <ESP8266WiFi.h>
 #include <SimpleDHT.h>
-
+//#include <SPI.h>
 #define relay1 2
-const char *ssid     = "360WiFi-48681F";//这里是我的wifi，你使用时修改为你要连接的wifi ssid
-const char *password = "dianxin151";//你要连接的wifi密码
-//const char *host = "192.168.100.3";//修改为手机的的tcpServer服务端的IP地址，即手机在路由器上的ip
-const char *host = "120.78.164.75";
+char ssid[]     = "360WiFi-48681F";//这里是我的wifi，你使用时修改为你要连接的wifi ssid
+char password[] = "dianxin151";//你要连接的wifi密码
+char host[] = "192.168.100.3";//修改为手机的的tcpServer服务端的IP地址，即手机在路由器上的ip
+//const char *host = "120.78.164.75";
 WiFiClient client;
 const int tcpPort = 8989;//修改为你建立的Server服务端的端口号
+
 
 #define ID 1001
 
@@ -23,6 +24,8 @@ String temCtrlValue = "off"; // 将温控值保存问全局变量,默认关闭�
 
 void setup()
 { //pinMode(relay1,OUTPUT);
+
+
   Serial.begin(115200);
   delay(10);
   Serial.println();
@@ -36,12 +39,13 @@ void setup()
   digitalWrite(pinWindCtrl, LOW);
   // 连上WIFI
   WiFi.begin(ssid, password);
+
   while (WiFi.status() != WL_CONNECTED)//WiFi.status() ，这个函数是wifi连接状态，返回wifi链接状态
   {
     delay(500);
     Serial.print(".");
   }//如果没有连通向串口发送.....
-
+  
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");

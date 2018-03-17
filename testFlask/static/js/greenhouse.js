@@ -332,7 +332,7 @@ $(function () {
         // 当停止滑动滑块时，发送滑块数据，即温度值
         stop: function (ev, ui) {
             var v = parseInt(ui.position.left / $box_tem_parent.width() * 50);
-            var jsonData = {"M": "say", "ID": "1001", "C": "temCtrl_ " + String(v), T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "temCtrl_ " + String(v), T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
             });
         }
@@ -342,12 +342,12 @@ $(function () {
     var $autoTemBtn = $("#autoTemBtn");
     $autoTemBtn.click(function () {
         if ($autoTemBtn.is(":checked")) {
-            var jsonData = {"M": "say", "ID": "1001", "C": "temCtrl_on", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "temCtrl_on", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
         } else {
-            var jsonData = {"M": "say", "ID": "1001", "C": "temCtrl_off", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "temCtrl_off", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
@@ -358,14 +358,14 @@ $(function () {
     var $winCtrlBtn = $("#windCtrlBtn");
     $winCtrlBtn.click(function () {
         if ($winCtrlBtn.is(':checked')) {
-            var jsonData = {"M": "say", "ID": "1001", "C": "windCtrl_1", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "windCtrl_1", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
             // $("#wind_msg").html("已开始通风");
         }
         else {
-            var jsonData = {"M": "say", "ID": "1001", "C": "windCtrl_0", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "windCtrl_0", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
@@ -376,14 +376,14 @@ $(function () {
     var $doorCtrlBtn = $("#doorCtrlBtn");
     $doorCtrlBtn.click(function () {
         if ($doorCtrlBtn.is(':checked')) {
-            var jsonData = {"M": "say", "ID": "1001", "C": "doorCtrl_1", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "doorCtrl_1", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
             // $("#door_msg").html("已经开门");
         }
         else {
-            var jsonData = {"M": "say", "ID": "1001", "C": "doorCtrl_0", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "doorCtrl_0", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
@@ -394,7 +394,7 @@ $(function () {
     var $lightCtrlBtn = $("#lightCtrlBtn");
     $lightCtrlBtn.click(function () {
         if ($lightCtrlBtn.is(':checked')) {
-            var jsonData = {"M": "say", "ID": "1001", "C": "lightCtrl_1", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "lightCtrl_1", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
@@ -402,7 +402,7 @@ $(function () {
 
         }
         else {
-            var jsonData = {"M": "say", "ID": "1001", "C": "lightCtrl_0", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "lightCtrl_0", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
@@ -415,14 +415,14 @@ $(function () {
     var $water1CtrlBtn = $("#water1CtrlBtn");
     $water1CtrlBtn.click(function () {
         if ($water1CtrlBtn.is(':checked')) {
-            var jsonData = {"M": "say", "ID": "1001", "C": "water1Ctrl_1", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "water1Ctrl_1", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
             // $("#water1_msg").html("已开始喷灌");
         }
         else {
-            var jsonData = {"M": "say", "ID": "1001", "C": "water1Ctrl_0", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "water1Ctrl_0", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
@@ -433,14 +433,14 @@ $(function () {
     var $water2CtrlBtn = $("#water2CtrlBtn");
     $water2CtrlBtn.click(function () {
         if ($water2CtrlBtn.is(':checked')) {
-            var jsonData = {"M": "say", "ID": "1001", "C": "water2Ctrl_1", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "water2Ctrl_1", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
             // $("#water2_msg").html("已开始喷灌");
         }
         else {
-            var jsonData = {"M": "say", "ID": "1001", "C": "water2Ctrl_0", T: (new Date()).getTime()};
+            var jsonData = {"M": "say", "TID": "1001", "C": "water2Ctrl_0", T: (new Date()).getTime()};
             $.post(backgroundIP, jsonData, function (data, status) {
                 console.log(jsonData);
             });
