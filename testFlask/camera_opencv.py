@@ -12,7 +12,7 @@ class Camera(BaseCamera):
     video_source = 0
     min_area = 5000
     firstFrame = None
-    sqlCtrl = MysqlUpdateCtrl("192.168.100.3", "smartFarmTest", "root", "123456")
+    sqlCtrl = MysqlUpdateCtrl("127.0.0.1", "smartFarmTest", "root", "123456")
 
     @staticmethod
     def set_video_source(source):
