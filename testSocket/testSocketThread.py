@@ -24,7 +24,7 @@ PORT = 8989
 class HandleClient(threading.Thread):
     """处理客户端"""
 
-    def __init__(self, clientSocket, clientAddress, lock):
+    def __init__(self, clientSocket, clientAddress):
         super(HandleClient, self).__init__()
         self.clientSocket = clientSocket
         self.clientAddress = clientAddress
@@ -33,25 +33,25 @@ class HandleClient(threading.Thread):
     def run(self):
         """处理客户端请求数据"""
         global deviceSockets
-
         self.clientSocket.settimeout(10)
         while True:
             try:
                 requestData = self.clientSocket.recv(1024)
                 if requestData:
-                    # print "request data:", requestData
+                    print "request data:", requestData
                     if requestData[0] == "{":
                         # 对设备发来的数据进行解析
                         try:
                             jsonData = json.loads(requestData)
-                            # print type(jsonData)
+                            print type(jsonData)
                             print "deviceSockets_1:", deviceSockets
+
                             if lock.acquire():
-                                if deviceSockets.get(str(jsonData["ID"])) is None:
+
+                                if not (self.clientSocket in deviceSockets.values()):
                                     deviceSockets[str(jsonData["ID"])] = self.clientSocket
                                     print "deviceSockets[str(jsonData[ID])]:", deviceSockets[str(jsonData["ID"])]
                                 lock.release()
-                            # JsonDataORMCtrl.devicesJsonData(jsonData, self.clientSocket, self.sqlCtrl, deviceSockets)
                             JsonDataORMCtrl.devicesJsonData(jsonData, self.clientSocket, deviceSockets, lock)
                             # sql = "insert into DHT11Data (device_id, hum_value, tem_value, create_time) values (%s,%s,%s,%s)"
                             # sqlCtrl.cud(sql, (jsonData["ID"], jsonData["Hum"], jsonData["Tem"], datetime.now()))
@@ -94,7 +94,7 @@ class HandleClient(threading.Thread):
                             lock.release()
                             # self.sqlCtrl.close()
                 except:
-                    pass
+                    print "clientSocketID remove error"
                 print "deviceSockets_2:", deviceSockets
 
                 print "#" * 30
@@ -120,7 +120,7 @@ if __name__ == "__main__":
             print "*" * 30
             # print "deviceSockets:", deviceSockets
             print "[%s, %s] : connected" % clientAddress
-            handleClientProcess = HandleClient(clientSocket, clientAddress, lock)
+            handleClientProcess = HandleClient(clientSocket, clientAddress)
             handleClientProcess.start()
             # clientSocket.close()
 

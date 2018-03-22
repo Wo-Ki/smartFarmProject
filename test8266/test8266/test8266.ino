@@ -78,7 +78,7 @@ void loop()
   }
   while (client.available())//，无线读取到的数据转发到到串口
   {
-    String s = client.readString();  // 接收服务器的消息,eg:"windCtrl_1"
+    String s = client.readStringUntil('\n');  // 接收服务器的消息,eg:"windCtrl_1"
     Serial.println(s);
     int pos = s.indexOf('_'); // 找到"_"的位置
     if (pos != -1) {

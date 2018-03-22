@@ -16,7 +16,7 @@
     <SUITE FILE_PATH="coverage/testSocket$testSocketProcess.coverage" NAME="testSocketProcess Coverage Results" MODIFIED="1516605888934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/testSocket$JsonDataManger.coverage" NAME="JsonDataManger Coverage Results" MODIFIED="1515158084799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/testSocket$updateCtrl.coverage" NAME="updateCtrl Coverage Results" MODIFIED="1515052022540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/testSocket$testSocketThread.coverage" NAME="testSocketThread Coverage Results" MODIFIED="1521249634258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/testSocket$testSocketThread.coverage" NAME="testSocketThread Coverage Results" MODIFIED="1521724179028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/testSocket$upDataTest.coverage" NAME="upDataTest Coverage Results" MODIFIED="1514471387506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -38,62 +38,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="testSocketThread.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="testSocketThread.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testSocketThread.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="116" column="8" lean-forward="true" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="8" />
+            <state relative-caret-position="527">
+              <caret line="41" column="45" lean-forward="false" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
               <folding>
                 <element signature="e#90#103#0" expanded="true" />
-                <marker date="1521249630688" expanded="true" signature="3805:3851" ph="update devic... " />
+                <marker date="1521638542110" expanded="true" signature="3679:3725" ph="update devic... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testSocketProcess.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testSocketProcess.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JsonDataManger.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JsonDataManger.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-669">
-              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-              <folding>
-                <marker date="1516435011000" expanded="true" signature="631:671" ph="select * fro... devicesTable" />
-                <marker date="1516435011000" expanded="true" signature="800:860" ph="update devic... " />
-                <marker date="1516435011000" expanded="true" signature="970:1037" ph="insert into devicesTable... " />
-                <marker date="1516435011000" expanded="true" signature="1320:1360" ph="select * fro... devicesTable" />
-                <marker date="1516435011000" expanded="true" signature="1382:1427" ph="select statu... devicesTable" />
-                <marker date="1516435011000" expanded="true" signature="2139:2155" ph="insert into missing_value... " />
-                <marker date="1516435011000" expanded="true" signature="3362:3430" ph="insert into notificationTable... " />
-                <marker date="1516435011000" expanded="true" signature="3822:3867" ph="select statu... devicesTable" />
-                <marker date="1516435011000" expanded="true" signature="4344:4389" ph="select statu... devicesTable" />
-                <marker date="1516435011000" expanded="true" signature="4667:4706" ph="select * fro... statusTable" />
-                <marker date="1516435011000" expanded="true" signature="4958:4983" ph="insert into statusTable... " />
-                <marker date="1516435011000" expanded="true" signature="6073:6140" ph="insert into alertTable... " />
-                <marker date="1516435011000" expanded="true" signature="6891:6936" ph="select statu... devicesTable" />
-                <marker date="1516435011000" expanded="true" signature="7545:7591" ph="update devic... " />
-                <marker date="1516435011000" expanded="true" signature="8024:8069" ph="select statu... devicesTable" />
-                <marker date="1516435011000" expanded="true" signature="8602:8653" ph="select statu... devicesTable" />
-                <marker date="1516435011000" expanded="true" signature="9233:9285" ph="update devic... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JsonDataORMThread.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JsonDataORMThread.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JsonDataORMThread.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="147" column="57" lean-forward="false" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
+            <state relative-caret-position="419">
+              <caret line="164" column="30" lean-forward="true" selection-start-line="164" selection-start-column="30" selection-end-line="164" selection-end-column="30" />
               <folding>
                 <element signature="e#89#118#0" expanded="true" />
               </folding>
@@ -101,24 +63,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testSocketSelect.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testSocketSelect.py">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+            <state relative-caret-position="1292">
+              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JsonDataORMProcess.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JsonDataORMProcess.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="653">
-              <caret line="122" column="48" lean-forward="false" selection-start-line="122" selection-start-column="48" selection-end-line="122" selection-end-column="48" />
-              <folding>
-                <element signature="e#90#119#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -152,11 +102,13 @@
       <find>server_socket</find>
       <find>client_address</find>
       <find>handle_client_process</find>
+      <find>'</find>
     </findStrings>
     <replaceStrings>
       <replace>serverSocket</replace>
       <replace>clientAddress</replace>
       <replace>handleClientProcess</replace>
+      <replace>&quot;</replace>
     </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -171,13 +123,13 @@
         <option value="$PROJECT_DIR$/JsonDataManger.py" />
         <option value="$PROJECT_DIR$/MysqlUpdateCtrl.py" />
         <option value="$PROJECT_DIR$/MysqlORMCtrl.py" />
-        <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/exts.py" />
         <option value="$PROJECT_DIR$/JsonDataORMCtrl.py" />
         <option value="$PROJECT_DIR$/JsonDataORMProcess.py" />
         <option value="$PROJECT_DIR$/testSocketProcess.py" />
-        <option value="$PROJECT_DIR$/JsonDataORMThread.py" />
+        <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/testSocketThread.py" />
+        <option value="$PROJECT_DIR$/JsonDataORMThread.py" />
       </list>
     </option>
   </component>
@@ -188,10 +140,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="10" />
-    <option name="y" value="70" />
+    <option name="x" value="-1440" />
+    <option name="y" value="-342" />
     <option name="width" value="1440" />
-    <option name="height" value="830" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -208,6 +160,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -222,7 +175,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -588,13 +540,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="70" width="1440" height="830" extended-state="0" />
+    <frame x="-1440" y="-342" width="1440" height="877" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19670959" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2081545" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292517" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3360544" sideWeight="0.50858366" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.302168" sideWeight="0.5114449" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25338754" sideWeight="0.4914163" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27388534" sideWeight="0.48855507" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32789117" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -834,33 +787,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MysqlUpdateCtrl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testSocketProcess.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testSocketSelect.py">
+    <entry file="file://$PROJECT_DIR$/MysqlUpdateCtrl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding />
+        <state relative-caret-position="765">
+          <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JsonDataORMProcess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="122" column="48" lean-forward="false" selection-start-line="122" selection-start-column="48" selection-end-line="122" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -874,59 +818,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JsonDataManger.py">
+    <entry file="file://$PROJECT_DIR$/testSocketSelect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-669">
-          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-          <folding>
-            <marker date="1516435011000" expanded="true" signature="631:671" ph="select * fro... devicesTable" />
-            <marker date="1516435011000" expanded="true" signature="800:860" ph="update devic... " />
-            <marker date="1516435011000" expanded="true" signature="970:1037" ph="insert into devicesTable... " />
-            <marker date="1516435011000" expanded="true" signature="1320:1360" ph="select * fro... devicesTable" />
-            <marker date="1516435011000" expanded="true" signature="1382:1427" ph="select statu... devicesTable" />
-            <marker date="1516435011000" expanded="true" signature="2139:2155" ph="insert into missing_value... " />
-            <marker date="1516435011000" expanded="true" signature="3362:3430" ph="insert into notificationTable... " />
-            <marker date="1516435011000" expanded="true" signature="3822:3867" ph="select statu... devicesTable" />
-            <marker date="1516435011000" expanded="true" signature="4344:4389" ph="select statu... devicesTable" />
-            <marker date="1516435011000" expanded="true" signature="4667:4706" ph="select * fro... statusTable" />
-            <marker date="1516435011000" expanded="true" signature="4958:4983" ph="insert into statusTable... " />
-            <marker date="1516435011000" expanded="true" signature="6073:6140" ph="insert into alertTable... " />
-            <marker date="1516435011000" expanded="true" signature="6891:6936" ph="select statu... devicesTable" />
-            <marker date="1516435011000" expanded="true" signature="7545:7591" ph="update devic... " />
-            <marker date="1516435011000" expanded="true" signature="8024:8069" ph="select statu... devicesTable" />
-            <marker date="1516435011000" expanded="true" signature="8602:8653" ph="select statu... devicesTable" />
-            <marker date="1516435011000" expanded="true" signature="9233:9285" ph="update devic... " />
-          </folding>
+        <state relative-caret-position="221">
+          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JsonDataORMProcess.py">
+    <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="122" column="48" lean-forward="false" selection-start-line="122" selection-start-column="48" selection-end-line="122" selection-end-column="48" />
+        <state relative-caret-position="1292">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JsonDataManger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testSocketThread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="41" column="45" lean-forward="false" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
           <folding>
-            <element signature="e#90#119#0" expanded="true" />
+            <element signature="e#90#103#0" expanded="true" />
+            <marker date="1521638542110" expanded="true" signature="3679:3725" ph="update devic... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JsonDataORMThread.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="147" column="57" lean-forward="false" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
+        <state relative-caret-position="419">
+          <caret line="164" column="30" lean-forward="true" selection-start-line="164" selection-start-column="30" selection-end-line="164" selection-end-column="30" />
           <folding>
             <element signature="e#89#118#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testSocketThread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="116" column="8" lean-forward="true" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="8" />
-          <folding>
-            <element signature="e#90#103#0" expanded="true" />
-            <marker date="1521249630688" expanded="true" signature="3805:3851" ph="update devic... " />
           </folding>
         </state>
       </provider>
