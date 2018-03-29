@@ -43,7 +43,6 @@ class HandleClient(threading.Thread):
                         # 对设备发来的数据进行解析
                         try:
                             jsonData = json.loads(requestData)
-                            print type(jsonData)
                             print "deviceSockets_1:", deviceSockets
 
                             if lock.acquire():
@@ -77,6 +76,11 @@ class HandleClient(threading.Thread):
                         except:
                             print "web data analysis error!!!"
 
+                if self.clientSocket not in deviceSockets.values():
+                    clientSocketID = list(deviceSockets.keys())[list(deviceSockets.values()).index(self.clientSocket)]
+                    if lock.acquire():
+                        deviceSockets.pop(clientSocketID)
+                        lock.release()
             except Exception, e:
                 print e
                 print "[%s, %s] : disconnect" % clientAddress
@@ -86,6 +90,7 @@ class HandleClient(threading.Thread):
                     clientSocketID = list(deviceSockets.keys())[list(deviceSockets.values()).index(self.clientSocket)]
                     # sql = "update devicesTable set status=0 where ID = %s"
                     # self.sqlCtrl.cud(sql, (clientSocketID,))
+                    print "deviceSockets.values:", deviceSockets.values()
                     session.query(DevicesTable).filter_by(ID=clientSocketID).update({"status": 0})
                     session.commit()
                     if self.clientSocket in deviceSockets.values():
@@ -122,6 +127,7 @@ if __name__ == "__main__":
             print "[%s, %s] : connected" % clientAddress
             handleClientProcess = HandleClient(clientSocket, clientAddress)
             handleClientProcess.start()
+            time.sleep(0.5)
             # clientSocket.close()
 
     except KeyboardInterrupt:

@@ -4,9 +4,10 @@
 # creator = wangkai
 # creation time = 2017/12/25 19:17
 
-from exts import db
+from exts import db, login_manager
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 
 # class DHT11Data(db.Model):
@@ -16,6 +17,36 @@ from werkzeug.security import generate_password_hash, check_password_hash
 #     hum_value = db.Column(db.Float, default="1.1")
 #     tem_value = db.Column(db.Float, default="1.1")
 #     create_time = db.Column(db.DateTime, default=datetime.now)
+
+
+class User(UserMixin, db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=True)
+    email = db.Column(db.String(50))
+    password = db.Column(db.String(100), nullable=True)
+
+    def __init__(self, *args, **kwargs):
+        name = kwargs.get("name")
+        email = kwargs.get("email")
+        password = kwargs.get("password")
+
+        self.name = name
+        self.email = email
+        self.password = generate_password_hash(password)
+
+    def check_password(self, raw_password):
+        result = check_password_hash(self.password, raw_password)
+        return result
+
+        # @staticmethod
+        # def on_created(target, value, oldvalue, initiator):
+        #     target.role = Role.query.filter_by(name="Guests").first()
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 class DevicesTable(db.Model):

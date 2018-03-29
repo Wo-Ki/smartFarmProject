@@ -4,23 +4,28 @@
 /*}*/
 
 /*.swiper-slide {*/
-    /*width: 100%;*/
-    /*height: 200px;*/
+/*width: 100%;*/
+/*height: 200px;*/
 /*}*/
 
 /*#swiper1 {*/
-    /*background: green;*/
+/*background: green;*/
 /*}*/
 
 /*#swiper2 {*/
-    /*background: red;*/
+/*background: red;*/
 /*}*/
 
 /*#swiper3 {*/
-    /*background: blue;*/
+/*background: blue;*/
 /*}*/
 
 /*.swiper-wrapper{*/
-    /*width: 100%;*/
-    /*height: 80%;*/
+/*width: 100%;*/
+/*height: 80%;*/
 /*}*/
+
+.hrLine {
+    vertical-align: middle;
+    display: inline-block;
+}

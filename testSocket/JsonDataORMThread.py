@@ -51,29 +51,36 @@ class JsonDataORMCtrl(object):
             # print "JsonData devices:", jsonData
             try:
                 sourceID = list(deviceSockets.keys())[list(deviceSockets.values()).index(clientSocket)]
-                targetData = """{"M":"say","ID":"%s","K":"%s"}\n""" % (jsonData.get("C"), time.time())
+                print "sourceID:", sourceID
+                targetData = """{"M":"say","ID":"%s","K":"%s","T":"%s"}\n""" % (
+                    str(sourceID), jsonData.get("K"), time.time())
+                print "targetData:", targetData
                 # targetData = {"M": "say", "SID": str(sourceID), "C": jsonData.get("C"), "T": str(time.time())}
                 deviceSockets.get(jsonData.get("TID")).send(bytes(targetData))
+                print "T deviceSockets:", deviceSockets.get(jsonData.get("TID"))
                 # clientSocket.send(bytes("""{"M":"Send Success"}\n"""))
                 # 将通知信息存到数据库notificationTable
                 jsonData.pop("M")
                 updateData = jsonData
                 updateData["SID"] = sourceID
+                updateData["message"] = jsonData["K"]
+                updateData.pop("K")
+                print "updateData:", updateData
                 session.add(NotificationTable(**updateData))
                 session.commit()
             except:
                 print "devicesJsonData say error"
-        elif jsonData["M"] == "isOL":
-            tLists = jsonData.get("TID")
-            onDicts = {}
-            for tID in tLists:
-                find = session.query(DevicesTable.status).filter_by(ID=tID).first()
-                if find == 1:
-                    onDicts[tID] = "1"
-                else:
-                    onDicts[tID] = "0"
-            sendData = """{"M":"isOL","R":"%s","T":"%s"}\n""" % (str(onDicts), time.time())
-            clientSocket.send(bytes(sendData))
+        # elif jsonData["M"] == "isOL":
+        #     tLists = jsonData.get("TID")
+        #     onDicts = {}
+        #     for tID in tLists:
+        #         find = session.query(DevicesTable.status).filter_by(ID=tID).first()
+        #         if find == 1:
+        #             onDicts[tID] = "1"
+        #         else:
+        #             onDicts[tID] = "0"
+        #     sendData = """{"M":"isOL","R":"%s","T":"%s"}\n""" % (str(onDicts), time.time())
+        #     clientSocket.send(bytes(sendData))
         elif jsonData["M"] == "status":
             ID = jsonData.get("ID")
             find = session.query(DevicesTable).filter_by(ID=ID).first()
@@ -100,7 +107,7 @@ class JsonDataORMCtrl(object):
                     updateData["changeTime"] = datetime.now()
                     session.query(StatusTable).filter_by(ID=ID).update(updateData)
                     session.commit()
-                clientSocket.send(bytes("""{"M":"status OK"}\n"""))
+                clientSocket.send(bytes("""{"M":"status","K":"OK"}\n"""))
         elif jsonData["M"] == "alert":
             sourceID = list(deviceSockets.keys())[list(deviceSockets.values()).index(clientSocket)]
             updateData = {"ID": sourceID, "message": jsonData.get("C")}
@@ -127,7 +134,7 @@ class JsonDataORMCtrl(object):
                 sendData = """{"M":"Already OffLine"}\n"""
                 clientSocket.send(bytes(sendData))
                 return
-            sendData = """{"M":"OK"}\n"""
+            sendData = """{"M":"checkout OK"}\n"""
             clientSocket.send(bytes(sendData))
             sourceID = list(deviceSockets.keys())[list(deviceSockets.values()).index(clientSocket)]
             targetData = """{"M":"checkout","ID":"%s","T":"%s"}\n""" % (str(sourceID), time.time())
@@ -137,6 +144,8 @@ class JsonDataORMCtrl(object):
             if lock.acquire():
                 deviceSockets.pop(targetID)
                 lock.release()
+        elif jsonData["M"] == 'b':
+            pass
         else:
             clientSocket.send(bytes("""{"M":"Error","C":"No Such M"}\n"""))
 
@@ -149,7 +158,8 @@ class JsonDataORMCtrl(object):
             if find is None or find.status == 0:
                 print("flaskJsonData:device off line")
                 return
-            deviceSockets[targetID].send(bytes(jsonData["C"]))
+            sendData = """{"M":"say","K":"%s","T":"%s"}\n""" % (jsonData["C"], time.time())
+            deviceSockets[targetID].send(bytes(sendData))
         elif jsonData["M"] == "checkout":
             targetID = jsonData["TID"]
             find = session.query(DevicesTable).filter_by(ID=targetID).first()

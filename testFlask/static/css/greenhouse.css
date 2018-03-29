@@ -106,3 +106,10 @@
 .tgl-ios:checked + .tgl-btn:active:after {
     margin-left: -.8em;
 }
+
+#tableLog{
+    height: 500px;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow-y: scroll;
+}

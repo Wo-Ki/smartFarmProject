@@ -1,4 +1,5 @@
 #include <ESP8266WiFi.h>
+#include <ArduinoJson.h>
 char ssid[]     = "360WiFi-48681F";//这里是我的wifi，你使用时修改为你要连接的wifi ssid
 char password[] = "dianxin151";//你要连接的wifi密码
 char host[] = "192.168.100.3";//修改为手机的的tcpServer服务端的IP地址，即手机在路由器上的ip
@@ -8,7 +9,7 @@ const int tcpPort = 8989;//修改为你建立的Server服务端的端口号
 
 
 #define ID 2001
-
+const String targetID = "1001";
 
 
 void setup() {
@@ -57,21 +58,54 @@ void loop() {
 
   while (Serial.available())
   {
-    String t = Serial.readStringUntil('\n');
-    client.print(t);
-    delay(100);
+    String s = Serial.readStringUntil('*');
+    int pos = s.indexOf('_'); // 找到"_"的位置
+    if (pos != -1) {
+      String msgFirst = s.substring(0, pos); // eg:"wind"
+      String msgSecond = s.substring(pos + 1, s.length()); // eg:"1"
+      Serial.println(msgFirst);
+      Serial.println(msgSecond);
+      if (msgFirst == "wind") {
+        sendToServer(targetID, "windCtrl", msgSecond);
+      }
+      else if (msgFirst == "door") {
+        sendToServer(targetID, "doorCtrl", msgSecond);
+      }
+      else if (msgFirst == "light") {
+        sendToServer(targetID, "lightCtrl", msgSecond);
+      }
+      else if (msgFirst == "water1") {
+        sendToServer(targetID, "water1Ctrl", msgSecond);
+      }
+      else if (msgFirst == "water2") {
+        sendToServer(targetID, "water2Ctrl", msgSecond);
+      }
+      else if (msgFirst == "tem") {
+        sendToServer(targetID, "temCtrl", msgSecond);
+      }
+      else {
+        Serial.println("No such msgFirst");
+      }
+    }
+
   }
-  onChange();
+  beats(); // 心跳包
 
 }
+
 unsigned long lastTime = 0;
-void onChange() {
+void beats() {
   if (millis() - lastTime > 5000) {
     lastTime = millis();
-    String s = "{\"M\":\"say\",\"SID\":\"2001\",\"TID\":\"1001\",\"C\":\"I am 2001 ,you are 1001.\"}";
+    String s = "{\"M\":\"b\"}\n";
     client.print(s);
     delay(100);
-    Serial.println(s);
   }
+}
+
+void sendToServer(String targetID, String k, String v) {
+  String s = "{\"M\":\"say\",\"SID\":\"" + String(ID) + "\",\"TID\":\"" + targetID + "\",\"K\":\"" + k + "_" + v + "\"}\n";
+  client.print(s);
+  delay(100);
 }
 

@@ -1,5 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <SimpleDHT.h>
+#include <ArduinoJson.h>
 //#include <SPI.h>
 #define relay1 2
 char ssid[]     = "360WiFi-48681F";//这里是我的wifi，你使用时修改为你要连接的wifi ssid
@@ -45,7 +46,7 @@ void setup()
     delay(500);
     Serial.print(".");
   }//如果没有连通向串口发送.....
-  
+
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
@@ -67,12 +68,12 @@ void loop()
       Serial.println("chickin");
       delay(500);
       // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
-      sendState(1, "water1Ctrl", "0");
-      sendState(2, "water2Ctrl", "0");
-      sendState(3, "windCtrl", "0");
-      sendState(4, "doorCtrl", "0");
-      sendState(5, "lightCrtl", "0");
-      sendState(6, "temCrtl", "off");
+      sendState(1, "water1Ctrl", "0"); delay(10);
+      sendState(2, "water2Ctrl", "0"); delay(10);
+      sendState(3, "windCtrl", "0"); delay(10);
+      sendState(4, "doorCtrl", "0"); delay(10);
+      sendState(5, "lightCrtl", "0"); delay(10);
+      sendState(6, "temCrtl", "off"); delay(10);
     }
 
   }
@@ -80,27 +81,31 @@ void loop()
   {
     String s = client.readStringUntil('\n');  // 接收服务器的消息,eg:"windCtrl_1"
     Serial.println(s);
-    int pos = s.indexOf('_'); // 找到"_"的位置
-    if (pos != -1) {
-      String msgFirst = s.substring(0, pos); // eg:"windCtrl"
-      String msgSecond = s.substring(pos + 1, s.length()); // eg:"1"
-      if (msgFirst == "temCtrl") {
-        temCtrlFunc(msgSecond);
-      }
-      else if (msgFirst == "windCtrl") {
-        windCtrlFunc(msgSecond);
-      }
-      else if (msgFirst == "doorCtrl") {}
-      else if (msgFirst == "lightCtrl") {
-        lightCtrlFunc(msgSecond);
-      }
-      else if (msgFirst == "water1Ctrl") {}
-      else if (msgFirst == "water2Ctrl") {}
-      else {
-        Serial.println("No Such Ctrl!!!");
-      }
+    StaticJsonBuffer<200> jsonBuffer;
+    JsonObject& root = jsonBuffer.parseObject(s);
+    if (!root.success()) {
+      Serial.println("parseObject() failed");
+      continue;
     }
-    delay(500);
+    String m = root["M"];
+    Serial.println(m);
+    if (m == "checkinok") {
+      Serial.println("load success");
+    }
+    else if (m == "Error") {
+      String err = root["K"];
+      Serial.println(err);
+    }
+    else if (m == "say") {
+      String c = root["K"];
+
+      sayFunc(c);
+    }
+    else if (m == "time") {}
+    else {
+      Serial.println("No such M");
+    }
+
   }
 
   if (Serial.available())//串口读取到的转发到wifi，因为串口是一位一位的发送所以在这里缓存完再发送
@@ -113,6 +118,31 @@ void loop()
   }
   dht11Func();
   temAutoCtrlFunc();
+}
+
+void sayFunc(String s) {
+
+  int pos = s.indexOf('_'); // 找到"_"的位置
+  if (pos != -1) {
+    String msgFirst = s.substring(0, pos); // eg:"windCtrl"
+    String msgSecond = s.substring(pos + 1, s.length()); // eg:"1"
+    Serial.println(msgFirst);
+    if (msgFirst == "temCtrl") {
+      temCtrlFunc(msgSecond);
+    }
+    else if (msgFirst == "windCtrl") {
+      windCtrlFunc(msgSecond);
+    }
+    else if (msgFirst == "doorCtrl") {}
+    else if (msgFirst == "lightCtrl") {
+      lightCtrlFunc(msgSecond);
+    }
+    else if (msgFirst == "water1Ctrl") {}
+    else if (msgFirst == "water2Ctrl") {}
+    else {
+      Serial.println("No Such Ctrl!!!");
+    }
+  }
 }
 
 unsigned long lastSend = 0;
@@ -198,6 +228,6 @@ void sendState(int col, String key, String value) { // col填1,2,3... ,key 填 w
   // 向服务器返回每次操作后的状态值,确保在服务器上显示的状态是正确无误,具体col对应的值参考手册
   String sendData = "{\"M\":\"status\",\"ID\":\"" + String(ID) + "\",\"col" + String(col) + "\":\"" + String(key) + "_" + String(value) + "\"}\n";
   client.print(sendData);
-  delay(200);
+  delay(20);
   Serial.println(sendData);
 }

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+    关于我们
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/aboutUs.css") }}">
+{% endblock head %}
+{% block main %}
+    <br><br>
+    <div class="jumbotron fly_jumbotron">
+        <h1>Flying工作室</h1>
+        <p>一个大家庭</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                    <img src="{{ url_for('static',filename="images/slider01.png") }}" alt=""
+                         class="img-responsive center-block">
+                </div>
+                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                    <h2 class="text-center">姓名</h2>
+                    <p>在 Internet Explorer 8-10 中，设置为 .img-responsive
+                        的 SVG 图像显示出的尺寸不匀称。为了解决这个问题，在出问题的地方添加 width: 100% \9; 即可。</p>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+
+                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                    <h2 class="text-center">姓名</h2>
+                    <p>在 Internet Explorer 8-10 中，设置为 .img-responsive
+                        的 SVG 图像显示出的尺寸不匀称。为了解决这个问题，在出问题的地方添加 width: 100% \9; 即可。</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                    <img src="{{ url_for('static',filename="images/slider01.png") }}" alt=""
+                         class="img-responsive center-block">
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock main %}
